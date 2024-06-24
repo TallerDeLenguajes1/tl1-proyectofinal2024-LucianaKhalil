@@ -1,26 +1,38 @@
-﻿using System.Net.WebSockets;
-using System.Runtime.CompilerServices;
+﻿using System;
 using System.Text.Json;
 
-PersonajeJson salida= await GetPersonaje();
 
-Console.WriteLine("Personaje " + salida);
+public class Program
+{
+    public static async Task Main(string[] args)
+    {
+        FabricaDePersonajes fabrica = new FabricaDePersonajes();
+        PersonajeJson personaje = await fabrica.obtenerPersonaje();
 
-static async Task<PersonajeJson> GetPersonaje(){
-    var url ="https://www.dnd5eapi.co/api/";
-     try
-    {
-        HttpClient client = new HttpClient();
-        HttpResponseMessage response = await client.GetAsync(url);
-        response.EnsureSuccessStatusCode();//si la solicitud es exitosa se lee la respuesta
-        string responseBody = await response.Content.ReadAsStringAsync();
-        PersonajeJson personajeJson = JsonSerializer.Deserialize<PersonajeJson>(responseBody);//Se deserializa el contenido JSON en un objeto CoinDesk 
-        return personajeJson;
-    }
-    catch (HttpRequestException e)
-    {
-        Console.WriteLine("Problemas de acceso a la API");
-        Console.WriteLine("Message :{0} ", e.Message);
-        return null;
+        if (personaje != null)
+        {
+            Console.WriteLine($"Personaje obtenido desde la API: {JsonSerializer.Serialize(personaje, new JsonSerializerOptions { WriteIndented = true })}");
+
+            // Guardar el personaje en un archivo
+            var personajes = new List<PersonajeJson> { personaje };
+            PersonajesJson manejadorDePersonajes = new PersonajesJson();
+            string nombreArchivo = "personajes.json";
+            manejadorDePersonajes.GuardarPersonajes(personajes, nombreArchivo);
+
+            // Verificar si el archivo existe y tiene datos
+            bool existe = manejadorDePersonajes.Existe(nombreArchivo);
+            Console.WriteLine($"¿El archivo {nombreArchivo} existe y tiene datos? {existe}");
+
+            // Leer personajes del archivo
+            if (existe)
+            {
+                List<PersonajeJson> personajesLeidos = manejadorDePersonajes.LeerPersonajes(nombreArchivo);
+                Console.WriteLine($"Personajes leídos del archivo: {JsonSerializer.Serialize(personajesLeidos, new JsonSerializerOptions { WriteIndented = true })}");
+            }
+        }
+        else
+        {
+            Console.WriteLine("No se pudo obtener el personaje desde la API.");
+        }
     }
 }
