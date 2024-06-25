@@ -1,22 +1,24 @@
 ﻿using System;
 using System.Text.Json;
-
-
+using Proyecto;
 public class Program
 {
     public static async Task Main(string[] args)
     {
         FabricaDePersonajes fabrica = new FabricaDePersonajes();
-        PersonajeJson personaje = await fabrica.obtenerPersonaje();
-
-        if (personaje != null)
+        Personaje personajeNuevo = await fabrica.obtenerPersonaje();
+    
+        if (personajeNuevo != null)
         {
-            Console.WriteLine($"Personaje obtenido desde la API: {JsonSerializer.Serialize(personaje, new JsonSerializerOptions { WriteIndented = true })}");
+            Console.WriteLine($"Personaje obtenido desde la API: {JsonSerializer.Serialize(personajeNuevo, new JsonSerializerOptions { WriteIndented = true })}");
 
             // Guardar el personaje en un archivo
-            var personajes = new List<PersonajeJson> { personaje };
+            List<Personaje> personajes;
+
             PersonajesJson manejadorDePersonajes = new PersonajesJson();
-            string nombreArchivo = "personajes.json";
+            string nombreArchivo = "personaje.json";
+            personajes=manejadorDePersonajes.LeerPersonajes(nombreArchivo);
+            personajes.Add(personajeNuevo);
             manejadorDePersonajes.GuardarPersonajes(personajes, nombreArchivo);
 
             // Verificar si el archivo existe y tiene datos
@@ -26,7 +28,7 @@ public class Program
             // Leer personajes del archivo
             if (existe)
             {
-                List<PersonajeJson> personajesLeidos = manejadorDePersonajes.LeerPersonajes(nombreArchivo);
+                List<Personaje> personajesLeidos = manejadorDePersonajes.LeerPersonajes(nombreArchivo);
                 Console.WriteLine($"Personajes leídos del archivo: {JsonSerializer.Serialize(personajesLeidos, new JsonSerializerOptions { WriteIndented = true })}");
             }
         }

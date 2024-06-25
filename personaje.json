@@ -1,0 +1,20 @@
+[
+  {
+    "nombre": "Remy",
+    "clase": "Rogue",
+    "puntosDeVida": 100,
+    "raza": "Dwarf"
+  },
+  {
+    "nombre": "Dorian",
+    "clase": "Barbarian",
+    "puntosDeVida": 100,
+    "raza": "Dwarf"
+  },
+  {
+    "nombre": "Bor",
+    "clase": "Rogue",
+    "puntosDeVida": 100,
+    "raza": "Elf"
+  }
+]

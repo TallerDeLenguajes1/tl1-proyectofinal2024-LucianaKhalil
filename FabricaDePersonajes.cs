@@ -1,3 +1,4 @@
+namespace Proyecto{
 using System;
 using System.Net.Http;
 using System.Text.Json;
@@ -8,22 +9,21 @@ public class FabricaDePersonajes
     private HttpClient client = new HttpClient();
     private  Random random = new Random();
     private  string[] nombrePsje = {"Dijkstra", "Dorian", "Bin", "Remy", "Bor"};//faltan nombres
-
-    public async Task<PersonajeJson> obtenerPersonaje()
+    public async Task<Personaje> obtenerPersonaje()
     {
         try
         {
             // Obtener la lista de clases
             var clasesResponse = await client.GetAsync("https://www.dnd5eapi.co/api/classes");
             clasesResponse.EnsureSuccessStatusCode();
-            var clasesBody = await clasesResponse.Content.ReadAsStringAsync();
-            var clases = JsonSerializer.Deserialize<ReferenciaLista>(clasesBody);
+            var clasess = await clasesResponse.Content.ReadAsStringAsync();
+            var clases = JsonSerializer.Deserialize<ReferenciaLista>(clasess);
 
             // Obtener la lista de razas
             var razasResponse = await client.GetAsync("https://www.dnd5eapi.co/api/races");
             razasResponse.EnsureSuccessStatusCode();
-            var razasBody = await razasResponse.Content.ReadAsStringAsync();
-            var razas = JsonSerializer.Deserialize<ReferenciaLista>(razasBody);
+            var razass = await razasResponse.Content.ReadAsStringAsync();
+            var razas = JsonSerializer.Deserialize<ReferenciaLista>(razass);
 
             if (clases == null || clases.results.Count == 0 || razas == null || razas.results.Count == 0)
             {
@@ -36,12 +36,13 @@ public class FabricaDePersonajes
             var nombreAleatorio = nombrePsje[random.Next(nombrePsje.Length)];
 
             // Crear un personaje aleatorio
-            PersonajeJson personajeJson = new PersonajeJson
+            Personaje personajeJson = new Personaje()
             {
                 Nombre = nombreAleatorio,
                 Clase = claseAleatoria.name,
                 Raza = razaAleatoria.name,
-                PuntosDeVida = random.Next(1, 101)//averiguar
+                PuntosDeVida = 100//averiguar
+
             };
 
             return personajeJson;
@@ -60,30 +61,4 @@ public class ReferenciaLista
     [JsonPropertyName("results")]
     public List<Referencia> results { get; set; }
 }
-
-public class Referencia
-{
-    [JsonPropertyName("index")]
-    public string index { get; set; }
-
-    [JsonPropertyName("name")]
-    public string name { get; set; }
-
-    [JsonPropertyName("url")]
-    public string url { get; set; }
-}
-
-public class PersonajeJson
-{
-    [JsonPropertyName("nombre")]
-    public string Nombre { get; set; }
-
-    [JsonPropertyName("clase")]
-    public string Clase { get; set; }
-
-    [JsonPropertyName("puntosDeVida")]
-    public int PuntosDeVida { get; set; }
-
-    [JsonPropertyName("raza")]
-    public string Raza { get; set; }
 }
