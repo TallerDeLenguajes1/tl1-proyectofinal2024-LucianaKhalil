@@ -1,0 +1,15 @@
+[
+  {
+    "datos": {
+      "nombre": "Bor",
+      "clase": "Sorcerer",
+      "puntosDeVida": 100,
+      "raza": "Tiefling"
+    },
+    "caracteristicas": {
+      "fuerza": 9,
+      "destreza": 4,
+      "armadura": 11
+    }
+  }
+]

@@ -1,19 +1,13 @@
-using Proyecto;
-using System;
-using System.Net.Http;
-using System.Text.Json;
 using System.Text.Json.Serialization;
-public class Personaje
+
+namespace Proyecto
 {
-    [JsonPropertyName("nombre")]
-    public string Nombre { get; set; }
+    public class Personaje
+    {
+        [JsonPropertyName("datos")]
+        public DatosPersonaje Datos { get; set; }
 
-    [JsonPropertyName("clase")]
-    public string Clase { get; set; }
-
-    [JsonPropertyName("puntosDeVida")]
-    public int PuntosDeVida { get; set; }
-
-    [JsonPropertyName("raza")]
-    public string Raza { get; set; }
+        [JsonPropertyName("caracteristicas")]
+        public CaracteristicasPersonaje Caracteristicas { get; set; }
+    }
 }
