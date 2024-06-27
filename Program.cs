@@ -43,8 +43,8 @@ public class Program
                     Console.WriteLine("Características:");
                     Console.WriteLine($"  Fuerza: {personaje.Caracteristicas.Fuerza}");
                     Console.WriteLine($"  Destreza: {personaje.Caracteristicas.Destreza}");
-                    Console.WriteLine($"  Armadura: {personaje.Caracteristicas.Armadura}");
-                    Console.WriteLine();
+                    Console.WriteLine($"  Armadura: {personaje.Caracteristicas.Armadura}");//cambiar por velocidad
+                   
                 }
             }
         }

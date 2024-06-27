@@ -13,7 +13,11 @@ namespace Proyecto
         [JsonPropertyName("destreza")]
         public int Destreza { get; set; }
 
-        [JsonPropertyName("armadura")]
-        public int Armadura { get; set; }
+        [JsonPropertyName("velocidad")]
+        public int Velocidad { get; set; }
     }
+
+
 }
+//hacer metodo que de acuerdo a su raza y especie determine las caracteristicas y luego se le sume aleatoriamente con dado
+

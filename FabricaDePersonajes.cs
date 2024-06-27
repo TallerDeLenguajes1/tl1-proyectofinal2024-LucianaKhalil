@@ -4,6 +4,8 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using claseAPI;
+using caracteristicasBonosyRazas;
 
 namespace Proyecto
 {
@@ -31,29 +33,35 @@ namespace Proyecto
 
                 if (listaClases == null || listaClases.Results.Count == 0 || listaRazas == null || listaRazas.Results.Count == 0)
                 {
-                    throw new Exception("No se encontraron clases o razas.");
+                    Console.WriteLine("No se encontraron razas o clases");
                 }
 
                 // Seleccionar una clase y una raza aleatoriamente
                 var claseAleatoria = listaClases.Results[random.Next(listaClases.Results.Count)];
                 var razaAleatoria = listaRazas.Results[random.Next(listaRazas.Results.Count)];
                 var nombreAleatorio = nombresPersonaje[random.Next(nombresPersonaje.Length)];
+                
+                //instancia bonos por clase y raza
+                var bonos= new Bonos();
 
+                //obtener los bonos
+                var bonosRaza=bonos.ObtenerBonosPorRaza(razaAleatoria.name);
+                var bonosClase=bonos.ObtenerBonosPorClase(claseAleatoria.name);
                 // Crear un personaje aleatorio
                 Personaje personajeJson = new Personaje()
                 {
                     Datos = new DatosPersonaje
                     {
                         Nombre = nombreAleatorio,
-                        Clase = claseAleatoria.Nombre,
-                        Raza = razaAleatoria.Nombre,
-                        PuntosDeVida = 100 // Averiguar cómo calcular
+                        Clase = claseAleatoria.name,
+                        Raza = razaAleatoria.name,
+                        PuntosDeVida = 100 //inicializo vida completa
                     },
                     Caracteristicas = new CaracteristicasPersonaje
                     {
-                        Fuerza = random.Next(1, 21),
-                        Destreza = random.Next(1, 21),
-                        Armadura = random.Next(10, 20)
+                        Fuerza = bonosRaza.Fuerza+bonosClase.Fuerza,
+                        Destreza = bonosRaza.Destreza+bonosClase.Destreza,
+                        Velocidad = bonosRaza.Velocidad+bonosClase.Velocidad
                     }
                 };
 
@@ -72,17 +80,5 @@ namespace Proyecto
     {
         [JsonPropertyName("results")]
         public List<Referencia> Results { get; set; }
-    }
-
-    public class Referencia
-    {
-        [JsonPropertyName("index")]
-        public string Indice { get; set; }
-
-        [JsonPropertyName("name")]
-        public string Nombre { get; set; }
-
-        [JsonPropertyName("url")]
-        public string Url { get; set; }
     }
 }

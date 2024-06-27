@@ -3,7 +3,9 @@ using System;
 using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-public class Referencia
+
+namespace claseAPI{
+    public class Referencia
 {
     [JsonPropertyName("index")]
     public string index { get; set; }
@@ -13,4 +15,5 @@ public class Referencia
 
     [JsonPropertyName("url")]
     public  string url { get; set; }
+}
 }

@@ -11,5 +11,18 @@
       "destreza": 4,
       "armadura": 11
     }
+  },
+  {
+    "datos": {
+      "nombre": "Bin",
+      "clase": "Warlock",
+      "puntosDeVida": 100,
+      "raza": "Tiefling"
+    },
+    "caracteristicas": {
+      "fuerza": 9,
+      "destreza": 4,
+      "armadura": 19
+    }
   }
 ]
