@@ -9,48 +9,64 @@ public class Program
     public static async Task Main(string[] args)
     {
         FabricaDePersonajes fabrica = new FabricaDePersonajes();
-        Personaje personajeNuevo = await fabrica.ObtenerPersonaje();
-    
-        if (personajeNuevo != null)
+        PersonajesJson manejadorDePersonajes = new PersonajesJson();
+        string nombreArchivoPersonajes = "personaje.json";
+        string nombreArchivoHistorial = "historial.json";
+        List<Personaje> personajes = new List<Personaje>();
+
+        // Verificar si el archivo "personaje.json" existe y tiene datos
+        if (manejadorDePersonajes.Existe(nombreArchivoPersonajes))
         {
-            Console.WriteLine($"Personaje obtenido desde la API: {JsonSerializer.Serialize(personajeNuevo, new JsonSerializerOptions { WriteIndented = true })}");
-
-            // Guardar el personaje en un archivo
-            List<Personaje> personajes;
-
-            PersonajesJson manejadorDePersonajes = new PersonajesJson();
-            string nombreArchivo = "personaje.json";
-            personajes = manejadorDePersonajes.LeerPersonajes(nombreArchivo) ?? new List<Personaje>();
-            personajes.Add(personajeNuevo);
-            manejadorDePersonajes.GuardarPersonajes(personajes, nombreArchivo);
-
-            // Verificar si el archivo existe y tiene datos
-            bool existe = manejadorDePersonajes.Existe(nombreArchivo);
-            Console.WriteLine($"¿El archivo {nombreArchivo} existe y tiene datos? {existe}");
-
-            // Leer personajes del archivo
-            if (existe)
-            {
-                List<Personaje> personajesLeidos = manejadorDePersonajes.LeerPersonajes(nombreArchivo);
-                Console.WriteLine($"Personajes leídos del archivo:");
-
-                foreach (var personaje in personajesLeidos)
-                {
-                    Console.WriteLine($"Nombre: {personaje.Datos.Nombre}");
-                    Console.WriteLine($"Clase: {personaje.Datos.Clase}");
-                    Console.WriteLine($"Raza: {personaje.Datos.Raza}");
-                    Console.WriteLine($"Puntos de Vida: {personaje.Datos.PuntosDeVida}");
-                    Console.WriteLine("Características:");
-                    Console.WriteLine($"  Fuerza: {personaje.Caracteristicas.Fuerza}");
-                    Console.WriteLine($"  Destreza: {personaje.Caracteristicas.Destreza}");
-                    Console.WriteLine($"  Armadura: {personaje.Caracteristicas.Armadura}");//cambiar por velocidad
-                   
-                }
-            }
+            personajes = manejadorDePersonajes.LeerPersonajes(nombreArchivoPersonajes);
+            Console.WriteLine("Personajes cargados desde el archivo:");
         }
         else
         {
-            Console.WriteLine("No se pudo obtener el personaje desde la API.");
+            // Generar 10 personajes aleatorios si el archivo no existe
+            for (int i = 0; i < 10; i++)
+            {
+                Personaje personaje = await fabrica.ObtenerPersonaje();
+                personajes.Add(personaje);
+            }
+            // Guardar los personajes generados en "personaje.json"
+            manejadorDePersonajes.GuardarPersonajes(personajes, nombreArchivoPersonajes);
+            Console.WriteLine("Se generaron y guardaron 10 personajes aleatorios:");
         }
+
+        // Mostrar información de los personajes
+        foreach (var personaje in personajes)
+        {
+            Console.WriteLine($"Nombre: {personaje.Datos.Nombre}");
+            Console.WriteLine($"Clase: {personaje.Datos.Clase}");
+            Console.WriteLine($"Raza: {personaje.Datos.Raza}");
+            Console.WriteLine($"Puntos de Vida: {personaje.Datos.PuntosDeVida}");
+            Console.WriteLine("Características:");
+            Console.WriteLine($"  Fuerza: {personaje.Caracteristicas.Fuerza}");
+            Console.WriteLine($"  Destreza: {personaje.Caracteristicas.Destreza}");
+            Console.WriteLine($"  Velocidad: {personaje.Caracteristicas.Velocidad}");
+            Console.WriteLine("******************");
+        }
+
+        // Permitir al usuario elegir un personaje para luchar contra los otros 9
+        Console.WriteLine("Elige el índice del personaje que quieres usar para luchar (0-9):");
+        int indiceElegido;
+        while (!int.TryParse(Console.ReadLine(), out indiceElegido) || indiceElegido < 0 || indiceElegido >= personajes.Count)
+        {
+            Console.WriteLine("Índice inválido. Por favor elige un número entre 0 y 9:");
+        }
+
+        Personaje personajeUsuario = personajes[indiceElegido];
+        List<Personaje> enemigos = new List<Personaje>(personajes);
+        enemigos.RemoveAt(indiceElegido);
+
+        // Simular luchas y guardar ganadores en "historial.json"
+        List<Personaje> ganadores = new List<Personaje>();
+
+    //SIMULAR COMBATE ACA
+
+        // Guardar los ganadores en "historial.json"
+        manejadorDePersonajes.GuardarPersonajes(ganadores, nombreArchivoHistorial);
+        Console.WriteLine("Ganadores guardados en historial.json");
     }
+
 }
