@@ -48,7 +48,7 @@ public class Program
         }
 
         // Permitir al usuario elegir un personaje para luchar contra los otros 9
-        Console.WriteLine("Elige el indice del personaje que quieres usar para luchar (0-9):");
+        Console.WriteLine("Elige el indice del personaje que quieres usar para luchar (0-10):");
         int indiceElegido;
         while (!int.TryParse(Console.ReadLine(), out indiceElegido) || indiceElegido < 0 || indiceElegido >= personajes.Count)
         {
@@ -56,8 +56,18 @@ public class Program
         }
 
         Personaje personajeUsuario = personajes[indiceElegido];
+            Console.WriteLine("Personaje seleccionado:\n");
+            Console.WriteLine($"Nombre: {personajeUsuario.Datos.Nombre}");
+            Console.WriteLine($"Clase: {personajeUsuario.Datos.Clase}");
+            Console.WriteLine($"Raza: {personajeUsuario.Datos.Raza}");
+            Console.WriteLine($"Puntos de Vida: {personajeUsuario.Datos.PuntosDeVida}");
+            Console.WriteLine("Características:");
+            Console.WriteLine($"  Fuerza: {personajeUsuario.Caracteristicas.Fuerza}");
+            Console.WriteLine($"  Destreza: {personajeUsuario.Caracteristicas.Destreza}");
+            Console.WriteLine($"  Velocidad: {personajeUsuario.Caracteristicas.Velocidad}");
+
         List<Personaje> enemigos = new List<Personaje>(personajes);
-        enemigos.RemoveAt(indiceElegido);
+        enemigos.RemoveAt(indiceElegido);//separar personaje usuario de los enemigos
 
         // Simular luchas y guardar ganadores en "historial.json"
         List<Personaje> ganadores = new List<Personaje>();
