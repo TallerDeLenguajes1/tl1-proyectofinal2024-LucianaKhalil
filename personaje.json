@@ -1,20 +1,33 @@
 [
   {
     "datos": {
-      "nombre": "Renarin",
-      "clase": "Barbarian",
+      "nombre": "Eshonai",
+      "clase": "Sorcerer",
       "puntosDeVida": 100,
-      "raza": "Tiefling"
+      "raza": "Dragonborn"
     },
     "caracteristicas": {
-      "fuerza": 12,
-      "destreza": 10,
-      "velocidad": 13
+      "fuerza": 9,
+      "destreza": 12,
+      "velocidad": 12
     }
   },
   {
     "datos": {
-      "nombre": "Hoid",
+      "nombre": "Szeth",
+      "clase": "Fighter",
+      "puntosDeVida": 100,
+      "raza": "Halfling"
+    },
+    "caracteristicas": {
+      "fuerza": 10,
+      "destreza": 13,
+      "velocidad": 10
+    }
+  },
+  {
+    "datos": {
+      "nombre": "Renarin",
       "clase": "Cleric",
       "puntosDeVida": 100,
       "raza": "Tiefling"
@@ -27,54 +40,93 @@
   },
   {
     "datos": {
-      "nombre": "Eshonai",
+      "nombre": "Kaladin",
       "clase": "Rogue",
       "puntosDeVida": 100,
-      "raza": "Tiefling"
+      "raza": "Elf"
     },
     "caracteristicas": {
       "fuerza": 6,
-      "destreza": 13,
+      "destreza": 16,
       "velocidad": 10
     }
   },
   {
     "datos": {
-      "nombre": "Shallan",
-      "clase": "Fighter",
+      "nombre": "Elhokar",
+      "clase": "Rogue",
       "puntosDeVida": 100,
-      "raza": "Half-Elf"
+      "raza": "Dwarf"
     },
     "caracteristicas": {
-      "fuerza": 13,
+      "fuerza": 7,
       "destreza": 14,
-      "velocidad": 10
+      "velocidad": 11
     }
   },
   {
     "datos": {
-      "nombre": "Dalinar",
-      "clase": "Monk",
+      "nombre": "Elhokar",
+      "clase": "Barbarian",
       "puntosDeVida": 100,
       "raza": "Half-Orc"
     },
     "caracteristicas": {
-      "fuerza": 11,
-      "destreza": 12,
-      "velocidad": 13
+      "fuerza": 15,
+      "destreza": 10,
+      "velocidad": 15
     }
   },
   {
     "datos": {
-      "nombre": "Adolin",
-      "clase": "Warlock",
+      "nombre": "Renarin",
+      "clase": "Fighter",
       "puntosDeVida": 100,
-      "raza": "Halfling"
+      "raza": "Elf"
     },
     "caracteristicas": {
-      "fuerza": 7,
-      "destreza": 10,
+      "fuerza": 11,
+      "destreza": 13,
+      "velocidad": 12
+    }
+  },
+  {
+    "datos": {
+      "nombre": "Eshonai",
+      "clase": "Wizard",
+      "puntosDeVida": 100,
+      "raza": "Dwarf"
+    },
+    "caracteristicas": {
+      "fuerza": 6,
+      "destreza": 11,
+      "velocidad": 10
+    }
+  },
+  {
+    "datos": {
+      "nombre": "Eshonai",
+      "clase": "Rogue",
+      "puntosDeVida": 100,
+      "raza": "Gnome"
+    },
+    "caracteristicas": {
+      "fuerza": 5,
+      "destreza": 15,
       "velocidad": 9
+    }
+  },
+  {
+    "datos": {
+      "nombre": "Renarin",
+      "clase": "Warlock",
+      "puntosDeVida": 100,
+      "raza": "Human"
+    },
+    "caracteristicas": {
+      "fuerza": 10,
+      "destreza": 8,
+      "velocidad": 11
     }
   },
   {
@@ -82,51 +134,12 @@
       "nombre": "Renarin",
       "clase": "Barbarian",
       "puntosDeVida": 100,
-      "raza": "Dwarf"
+      "raza": "Half-Elf"
     },
     "caracteristicas": {
-      "fuerza": 13,
-      "destreza": 11,
-      "velocidad": 14
-    }
-  },
-  {
-    "datos": {
-      "nombre": "Jasnah",
-      "clase": "Monk",
-      "puntosDeVida": 100,
-      "raza": "Halfling"
-    },
-    "caracteristicas": {
-      "fuerza": 7,
-      "destreza": 15,
-      "velocidad": 9
-    }
-  },
-  {
-    "datos": {
-      "nombre": "Jasnah",
-      "clase": "Paladin",
-      "puntosDeVida": 100,
-      "raza": "Halfling"
-    },
-    "caracteristicas": {
-      "fuerza": 9,
-      "destreza": 12,
+      "fuerza": 14,
+      "destreza": 14,
       "velocidad": 11
-    }
-  },
-  {
-    "datos": {
-      "nombre": "Hoid",
-      "clase": "Fighter",
-      "puntosDeVida": 100,
-      "raza": "Dwarf"
-    },
-    "caracteristicas": {
-      "fuerza": 12,
-      "destreza": 11,
-      "velocidad": 13
     }
   }
 ]

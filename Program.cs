@@ -10,8 +10,8 @@ public class Program
     {
         FabricaDePersonajes fabrica = new FabricaDePersonajes();
         PersonajesJson manejadorDePersonajes = new PersonajesJson();
-        string nombreArchivoPersonajes = "personaje.json";
-        string nombreArchivoHistorial = "historial.json";
+        string nombreArchivoPersonajes = "personaje.json";//guardan todos los personajes
+        string nombreArchivoHistorial = "historial.json";//guardan ganadores
         List<Personaje> personajes = new List<Personaje>();
 
         // Verificar si el archivo "personaje.json" existe y tiene datos
@@ -23,7 +23,7 @@ public class Program
         else
         {
             // Generar 10 personajes aleatorios si el archivo no existe
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 11; i++)//creo 11 para que jugador elija uno y luche contra los otros 10
             {
                 Personaje personaje = await fabrica.ObtenerPersonaje();
                 personajes.Add(personaje);
@@ -48,11 +48,11 @@ public class Program
         }
 
         // Permitir al usuario elegir un personaje para luchar contra los otros 9
-        Console.WriteLine("Elige el índice del personaje que quieres usar para luchar (0-9):");
+        Console.WriteLine("Elige el indice del personaje que quieres usar para luchar (0-9):");
         int indiceElegido;
         while (!int.TryParse(Console.ReadLine(), out indiceElegido) || indiceElegido < 0 || indiceElegido >= personajes.Count)
         {
-            Console.WriteLine("Índice inválido. Por favor elige un número entre 0 y 9:");
+            Console.WriteLine("Indice invalido. Por favor elige un numero entre 0 y 9:");
         }
 
         Personaje personajeUsuario = personajes[indiceElegido];
@@ -61,7 +61,34 @@ public class Program
 
         // Simular luchas y guardar ganadores en "historial.json"
         List<Personaje> ganadores = new List<Personaje>();
+    //SIMULAR TIRADA DE DADOS
+    Console.WriteLine("Tira un dado de 20 caras y elige a que caracteristicas deseas sumarle el resultado(1:Fuerza, 2:Destreza o 3:Velocidad)");
+    int caracteristicaElegida;
+    while (!int.TryParse(Console.ReadLine(), out caracteristicaElegida) || caracteristicaElegida < 1 || caracteristicaElegida> 3)
+        {
+            Console.WriteLine("Cracateristica inválida. Elija un numero entre 1 y 3");
+        }
+    Random random=new Random();
+    int resultadoD20=random.Next(1,21);//D20
+    Console.WriteLine($"El resultado del dado es: {resultadoD20}");
 
+    switch(caracteristicaElegida){
+        case 1:
+        personajeUsuario.Caracteristicas.Fuerza+=resultadoD20;
+        break;
+        case 2:
+        personajeUsuario.Caracteristicas.Destreza+=resultadoD20;
+        break;
+        case 3:
+        personajeUsuario.Caracteristicas.Velocidad+=resultadoD20;
+        break;
+    }
+    Console.WriteLine("Características actualizadas del personaje elegido:");
+    Console.WriteLine($"  Fuerza: {personajeUsuario.Caracteristicas.Fuerza}");
+    Console.WriteLine($"  Destreza: {personajeUsuario.Caracteristicas.Destreza}");
+    Console.WriteLine($"  Velocidad: {personajeUsuario.Caracteristicas.Velocidad}");
+
+    
     //SIMULAR COMBATE ACA
 
         // Guardar los ganadores en "historial.json"
