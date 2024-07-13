@@ -123,7 +123,7 @@ public class Program
                     Console.WriteLine($"El enemigo recibe un bono de {resultadoD20enemigo} en Velocidad.");
                     break;
             }
-
+                    
             }
         }
         // Guardar los ganadores en "historial.json"
