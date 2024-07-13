@@ -13,7 +13,7 @@ namespace Proyecto
     {
         private HttpClient client = new HttpClient();
         private Random random = new Random();
-        private string[] nombresPersonaje = { "Renarin", "Adolin", "Kaladin", "Shallan", "Dalinar", "Szeth", "Jasnah", "Hoid", "Elhokar", "Eshonai"};
+        private string[] nombresPersonaje = {"Renarin", "Adolin", "Kaladin", "Shallan", "Dalinar", "Szeth", "Jasnah", "Hoid", "Elhokar", "Eshonai"};
         public async Task<Personaje> ObtenerPersonaje()
         {
             try

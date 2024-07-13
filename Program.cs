@@ -13,7 +13,6 @@ public class Program
         string nombreArchivoPersonajes = "personaje.json";//guardan todos los personajes
         string nombreArchivoHistorial = "historial.json";//guardan ganadores
         List<Personaje> personajes = new List<Personaje>();
-
         // Verificar si el archivo "personaje.json" existe y tiene datos
         if (manejadorDePersonajes.Existe(nombreArchivoPersonajes))
         {
@@ -22,7 +21,7 @@ public class Program
         }
         else
         {
-            // Generar 10 personajes aleatorios si el archivo no existe
+            // Generar 11 personajes aleatorios si el archivo no existe
             for (int i = 0; i < 11; i++)//creo 11 para que jugador elija uno y luche contra los otros 10
             {
                 Personaje personaje = await fabrica.ObtenerPersonaje();
@@ -32,7 +31,6 @@ public class Program
             manejadorDePersonajes.GuardarPersonajes(personajes, nombreArchivoPersonajes);
             Console.WriteLine("Se generaron y guardaron 10 personajes aleatorios:");
         }
-
         // Mostrar información de los personajes
         foreach (var personaje in personajes)
         {
@@ -52,7 +50,7 @@ public class Program
         int indiceElegido;
         while (!int.TryParse(Console.ReadLine(), out indiceElegido) || indiceElegido < 0 || indiceElegido >= personajes.Count)
         {
-            Console.WriteLine("Indice invalido. Por favor elige un numero entre 0 y 9:");
+            Console.WriteLine("Indice inválido. Por favor elige un numero entre 0 y 9:");
         }
 
         Personaje personajeUsuario = personajes[indiceElegido];
@@ -69,38 +67,64 @@ public class Program
         List<Personaje> enemigos = new List<Personaje>(personajes);
         enemigos.RemoveAt(indiceElegido);//separar personaje usuario de los enemigos
 
-        // Simular luchas y guardar ganadores en "historial.json"
-        List<Personaje> ganadores = new List<Personaje>();
-    //SIMULAR TIRADA DE DADOS
-    Console.WriteLine("Tira un dado de 20 caras y elige a que caracteristicas deseas sumarle el resultado(1:Fuerza, 2:Destreza o 3:Velocidad)");
-    int caracteristicaElegida;
-    while (!int.TryParse(Console.ReadLine(), out caracteristicaElegida) || caracteristicaElegida < 1 || caracteristicaElegida> 3)
+        
+        List<Personaje> ganadores = new List<Personaje>();//lista para guardar ganadores
+        bool ganadorUsuario= true;
+        Random random=new Random();
+
+        foreach(var enemigo in enemigos)
         {
-            Console.WriteLine("Cracateristica inválida. Elija un numero entre 1 y 3");
+            if(!ganadorUsuario){
+                break;
+            }else{
+                Console.WriteLine($"Pelea contra: {enemigo.Datos.Nombre}");
+                Console.WriteLine("************************");
+                //SIMULAR TIRADA DE DADOS D20
+                Console.WriteLine("Tira un dado de 20 caras y elige a que caracteristicas deseas sumarle el resultado(1:Fuerza, 2:Destreza o 3:Velocidad)");
+                int caracteristicaElegida;
+                    while (!int.TryParse(Console.ReadLine(), out caracteristicaElegida) || caracteristicaElegida < 1 || caracteristicaElegida> 3)
+                    {
+                        Console.WriteLine("Cracateristica inválida. Elija un numero entre 1 y 3");
+                    }  
+                int resultadoD20=random.Next(1,21);//D20
+                Console.WriteLine($"El resultado del dado es: {resultadoD20}");
+                 switch(caracteristicaElegida){
+                    case 1:
+                        personajeUsuario.Caracteristicas.Fuerza+=resultadoD20;
+                    break;
+                    case 2:
+                        personajeUsuario.Caracteristicas.Destreza+=resultadoD20;
+                    break;
+                    case 3:
+                        personajeUsuario.Caracteristicas.Velocidad+=resultadoD20;
+                    break;
         }
-    Random random=new Random();
-    int resultadoD20=random.Next(1,21);//D20
-    Console.WriteLine($"El resultado del dado es: {resultadoD20}");
+            Console.WriteLine("Características actualizadas del personaje elegido:");
+            Console.WriteLine($"  Fuerza: {personajeUsuario.Caracteristicas.Fuerza}");
+            Console.WriteLine($"  Destreza: {personajeUsuario.Caracteristicas.Destreza}");
+            Console.WriteLine($"  Velocidad: {personajeUsuario.Caracteristicas.Velocidad}");
+            //bonos d20 aleatorio para cada enemigo
+            int resultadoD20enemigo=random.Next(1,21);
+            Console.WriteLine($"Resultado del dado para el enemigo: {resultadoD20enemigo}");//eliminar despues
+            int caracteristicaEnemigo = random.Next(1, 4);
+            switch (caracteristicaEnemigo)
+            {
+                case 1:
+                    enemigo.Caracteristicas.Fuerza +=resultadoD20enemigo;
+                    Console.WriteLine($"El enemigo recibe un bono de {resultadoD20enemigo} en Fuerza.");
+                    break;
+                case 2:
+                    enemigo.Caracteristicas.Destreza += resultadoD20enemigo;
+                    Console.WriteLine($"El enemigo recibe un bono de {resultadoD20enemigo} en Destreza.");
+                    break;
+                case 3:
+                    enemigo.Caracteristicas.Velocidad += resultadoD20enemigo;
+                    Console.WriteLine($"El enemigo recibe un bono de {resultadoD20enemigo} en Velocidad.");
+                    break;
+            }
 
-    switch(caracteristicaElegida){
-        case 1:
-        personajeUsuario.Caracteristicas.Fuerza+=resultadoD20;
-        break;
-        case 2:
-        personajeUsuario.Caracteristicas.Destreza+=resultadoD20;
-        break;
-        case 3:
-        personajeUsuario.Caracteristicas.Velocidad+=resultadoD20;
-        break;
-    }
-    Console.WriteLine("Características actualizadas del personaje elegido:");
-    Console.WriteLine($"  Fuerza: {personajeUsuario.Caracteristicas.Fuerza}");
-    Console.WriteLine($"  Destreza: {personajeUsuario.Caracteristicas.Destreza}");
-    Console.WriteLine($"  Velocidad: {personajeUsuario.Caracteristicas.Velocidad}");
-
-    
-    //SIMULAR COMBATE ACA
-
+            }
+        }
         // Guardar los ganadores en "historial.json"
         manejadorDePersonajes.GuardarPersonajes(ganadores, nombreArchivoHistorial);
         Console.WriteLine("Ganadores guardados en historial.json");
