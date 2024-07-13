@@ -1,1 +1,15 @@
-[]
+[
+  {
+    "datos": {
+      "nombre": "Eshonai",
+      "clase": "Sorcerer",
+      "puntosDeVida": 100,
+      "raza": "Dragonborn"
+    },
+    "caracteristicas": {
+      "fuerza": 9,
+      "destreza": 32,
+      "velocidad": 12
+    }
+  }
+]

@@ -123,7 +123,17 @@ public class Program
                     Console.WriteLine($"El enemigo recibe un bono de {resultadoD20enemigo} en Velocidad.");
                     break;
             }
-                    
+                //COMBATE
+                Console.WriteLine("Comienza el combate:");
+                ganadorUsuario=Combate.formulaCombate(personajeUsuario, enemigo);
+                if(ganadorUsuario){
+                     Console.WriteLine($"¡{personajeUsuario.Datos.Nombre} ha ganado la pelea contra {enemigo.Datos.Nombre}!");
+                     ganadores.Add(personajeUsuario);
+                }else{
+                    Console.WriteLine($"¡{personajeUsuario.Datos.Nombre} ha perdido la pelea contra {enemigo.Datos.Nombre}!");
+                    ganadores.Add(enemigo);
+                }
+
             }
         }
         // Guardar los ganadores en "historial.json"
