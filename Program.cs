@@ -30,7 +30,7 @@ public class Program
             }
             // Guardar los personajes generados en "personaje.json"
             manejadorDePersonajes.GuardarPersonajes(personajes, nombreArchivoPersonajes);
-            Console.WriteLine("Se generaron y guardaron 10 personajes aleatorios:");
+            Console.WriteLine("PERSONAJES");
         }
         // Mostrar información de los personajes
         foreach (var personaje in personajes)

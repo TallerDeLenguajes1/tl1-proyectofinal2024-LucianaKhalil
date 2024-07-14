@@ -13,7 +13,12 @@ namespace Proyecto
     {
         private HttpClient client = new HttpClient();
         private Random random = new Random();
-        private string[] nombresPersonaje = {"Renarin", "Adolin", "Kaladin", "Shallan", "Dalinar", "Szeth", "Jasnah", "Hoid", "Elhokar", "Eshonai"};
+        private List <string>nombresDisponibles;
+       public FabricaDePersonajes()//constructora
+        {
+            nombresDisponibles = new List<string> { "Renarin", "Adolin", "Kaladin", "Shallan", "Dalinar", "Szeth", "Jasnah", "Hoid", "Elhokar", "Taravangian", "Lift"};
+        }
+
         public async Task<Personaje> ObtenerPersonaje()
         {
             try
@@ -38,7 +43,14 @@ namespace Proyecto
                 // Seleccionar una clase y una raza aleatoriamente
                 var claseAleatoria = listaClases.Results[random.Next(listaClases.Results.Count)];
                 var razaAleatoria = listaRazas.Results[random.Next(listaRazas.Results.Count)];
-                var nombreAleatorio = nombresPersonaje[random.Next(nombresPersonaje.Length)];
+                  if (nombresDisponibles.Count == 0)
+                {
+                    Console.WriteLine("No quedan nombres disponibles.");
+                    return null;
+                }
+
+                var nombreAleatorio = nombresDisponibles[random.Next(nombresDisponibles.Count)];
+                nombresDisponibles.Remove(nombreAleatorio);//elimina el nombre usado para que no se repita
                 
                 //instancia bonos por clase y raza
                 var bonos= new Bonos();
