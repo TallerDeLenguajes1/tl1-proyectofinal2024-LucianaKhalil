@@ -125,7 +125,7 @@ public class Program
             }
                 //COMBATE
                 Console.WriteLine("Comienza el combate:");
-                ganadorUsuario=Combate.formulaCombate(personajeUsuario, enemigo);
+                ganadorUsuario=Combate.FormulaCombate(personajeUsuario, enemigo);
                 if(ganadorUsuario){
                      Console.WriteLine($"¡{personajeUsuario.Datos.Nombre} ha ganado la pelea contra {enemigo.Datos.Nombre}!");
                      ganadores.Add(personajeUsuario);

@@ -3,7 +3,7 @@ using Proyecto;
 
 public static class Combate{
     //metodo para simular el combate
-    public static bool formulaCombate(Personaje personajeUsuario, Personaje enemigo){
+    public static bool FormulaCombate(Personaje personajeUsuario, Personaje enemigo){
         Random random=new Random();
          int iniciativaUsuario = random.Next(1, 21);
         int iniciativaEnemigo = random.Next(1, 21);
@@ -21,11 +21,26 @@ public static class Combate{
 
          if (usuarioComienza)
         {
-            return poderUsuario > poderEnemigo;
+           Console.WriteLine($"{personajeUsuario.Datos.Nombre} ataca a {enemigo.Datos.Nombre}");
+           enemigo.Datos.PuntosDeVida-=(int)poderUsuario;//necesita casteo
+           Console.WriteLine($"{enemigo.Datos.Nombre} tiene ahora {enemigo.Datos.PuntosDeVida}");
+           if (enemigo.Datos.PuntosDeVida <= 0)
+                {
+                    Console.WriteLine($"{personajeUsuario.Datos.Nombre} ha derrotado a {enemigo.Datos.Nombre}!");
+                    return true;
+                }
         }
-        else
+        else//turno del enemigo
         {
-            return poderEnemigo > poderUsuario;
+           Console.WriteLine($"{enemigo.Datos.Nombre} ataca a {personajeUsuario.Datos.Nombre}");
+           personajeUsuario.Datos.PuntosDeVida-=(int)poderEnemigo;//necesita casteo
+           Console.WriteLine($"{personajeUsuario.Datos.Nombre} tiene ahora {personajeUsuario.Datos.PuntosDeVida}");
+           if (personajeUsuario.Datos.PuntosDeVida <= 0)
+                {
+                    Console.WriteLine($"{enemigo.Datos.Nombre} ha derrotado a {personajeUsuario.Datos.Nombre}!");
+                    return false;
+                }
         }
+        return personajeUsuario.Datos.PuntosDeVida > 0;
     }
 }
