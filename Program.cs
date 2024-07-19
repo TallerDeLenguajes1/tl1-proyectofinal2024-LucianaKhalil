@@ -5,10 +5,26 @@ using System.Threading.Tasks;
 using Proyecto;
 
 public class Program
-{
+{   
+     private static readonly ConsoleColor TituloColor = ConsoleColor.Cyan;
+    private static readonly ConsoleColor TextoNormalColor = ConsoleColor.White;
+    private static readonly ConsoleColor TextoDestacadoColor = ConsoleColor.Yellow;
+    private static readonly ConsoleColor TextoErrorColor = ConsoleColor.Red;
+    private static readonly ConsoleColor TextoExitoColor = ConsoleColor.Green;
     public static async Task Main(string[] args)
-    {
-        Console.WriteLine("En el mundo devastado de Roshar, el destino de la humanidad pende de un hilo. La guerra entre los Radiantes, antiguos guerreros imbuidos de poderes sagrados y temidos por su habilidad para manipular las tormentas, ha regresado y las fuerzas de Odium ha alcanzado su punto crítico en una serie de batallas decisivas. En esta encrucijada decisiva, tú asumes el papel de un Radiante, dispuesto a luchar por la supervivencia de tu pueblo y el futuro de un mundo devastado por la guerra: un duelo contra el campeón de Odium y sus nueve despojos. La verdadera desolación se acerca.");
+    {   
+
+        // Mostrar título con efecto de escritura
+        Console.ForegroundColor = TituloColor;
+        string titulo = "El Archivo de las tormentas";
+        Console.WriteLine("\n==================================================");
+        Console.WriteLine($"         {titulo.ToUpper()}      ");
+        Console.WriteLine("==================================================\n");
+        Console.ResetColor();
+
+        // Mostrar introducción con efecto de escritura
+        await ConsolaFormato.EscribirConEfecto("En el mundo devastado de Roshar, el destino de la humanidad pende de un hilo. La guerra entre los Radiantes, antiguos guerreros imbuidos de poderes sagrados y temidos por su habilidad para manipular las tormentas, ha regresado y las fuerzas de Odium han alcanzado su punto crítico en una serie de batallas decisivas. En esta encrucijada decisiva, tú asumes el papel de un Radiante, dispuesto a luchar por la supervivencia de tu pueblo y el futuro de un mundo devastado por la guerra: un duelo contra el campeón de Odium y sus nueve despojos. La verdadera desolación se acerca.", ConsoleColor.White);
+        Console.WriteLine();
         FabricaDePersonajes fabrica = new FabricaDePersonajes();
         PersonajesJson manejadorDePersonajes = new PersonajesJson();
         string nombreArchivoPersonajes = "personaje.json";//guardan todos los personajes

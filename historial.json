@@ -3,13 +3,13 @@
     "datos": {
       "nombre": "Dalinar",
       "clase": "Monk",
-      "puntosDeVida": 25,
+      "puntosDeVida": 12,
       "raza": "Gnome"
     },
     "caracteristicas": {
       "fuerza": 7,
-      "destreza": 14,
-      "velocidad": 20
+      "destreza": 21,
+      "velocidad": 10
     }
   }
 ]
