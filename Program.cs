@@ -8,7 +8,7 @@ public class Program
 {
     public static async Task Main(string[] args)
     {
-        Console.WriteLine("En el mundo de Roshar, la guerra entre los humanos y las fuerzas de Odium ha alcanzado un punto crítico. Los Radiantes, antiguos guerreros imbuidos de poderes sagrados y temidos por su habilidad para manipular las tormentas, han regresado. En un mundo al borde del colapso, estos seres legendarios traen consigo la esperanza de restaurar el equilibrio perdido y enfrentar a los agentes del Caos que amenazan con sumir a Roshar en la oscuridad eterna. En esta encrucijada decisiva, tú asumes el papel de un Radiante, dispuesto a luchar por la supervivencia de tu pueblo y el futuro de un mundo devastado por la guerra y la desolación.");
+        Console.WriteLine("En el mundo devastado de Roshar, el destino de la humanidad pende de un hilo. La guerra entre los Radiantes, antiguos guerreros imbuidos de poderes sagrados y temidos por su habilidad para manipular las tormentas, ha regresado y las fuerzas de Odium ha alcanzado su punto crítico en una serie de batallas decisivas. En esta encrucijada decisiva, tú asumes el papel de un Radiante, dispuesto a luchar por la supervivencia de tu pueblo y el futuro de un mundo devastado por la guerra: un duelo contra el campeón de Odium y sus nueve despojos. La verdadera desolación se acerca.");
         FabricaDePersonajes fabrica = new FabricaDePersonajes();
         PersonajesJson manejadorDePersonajes = new PersonajesJson();
         string nombreArchivoPersonajes = "personaje.json";//guardan todos los personajes
