@@ -17,9 +17,9 @@ public class Program
         // Mostrar título con efecto de escritura
         Console.ForegroundColor = TituloColor;
         string titulo = "El Archivo de las tormentas";
-        Console.WriteLine("\n==================================================");
-        Console.WriteLine($"         {titulo.ToUpper()}      ");
-        Console.WriteLine("==================================================\n");
+        Console.WriteLine("\n                                       ==================================================");
+        Console.WriteLine($"                                                  {titulo.ToUpper()}      ");
+        Console.WriteLine("                                        ==================================================\n");
         Console.ResetColor();
 
         // Mostrar introducción con efecto de escritura
@@ -34,7 +34,6 @@ public class Program
         if (manejadorDePersonajes.Existe(nombreArchivoPersonajes))
         {
             personajes = manejadorDePersonajes.LeerPersonajes(nombreArchivoPersonajes);
-            Console.WriteLine("PERSONAJES");
         }
         else
         {
@@ -46,11 +45,13 @@ public class Program
             }
             // Guardar los personajes generados en "personaje.json"
             manejadorDePersonajes.GuardarPersonajes(personajes, nombreArchivoPersonajes);
-            Console.WriteLine("PERSONAJES");
+            
         }
-        // Mostrar información de los personajes
+        Console.WriteLine("==== LISTA DE PERSONAJES ====");    // Mostrar información de los personajes
+        int id = 1; // Inicializa el contador en 1
         foreach (var personaje in personajes)
         {
+            Console.WriteLine($"ID: {id}");
             Console.WriteLine($"Nombre: {personaje.Datos.Nombre}");
             Console.WriteLine($"Clase: {personaje.Datos.Clase}");
             Console.WriteLine($"Raza: {personaje.Datos.Raza}");
@@ -60,10 +61,11 @@ public class Program
             Console.WriteLine($"  Destreza: {personaje.Caracteristicas.Destreza}");
             Console.WriteLine($"  Velocidad: {personaje.Caracteristicas.Velocidad}");
             Console.WriteLine("******************");
+            id++;
         }
 
         // Permitir al usuario elegir un personaje para luchar contra los otros 9
-        Console.WriteLine("Elige el indice del personaje que quieres usar para luchar (0-10):");
+        Console.WriteLine("Elige el indice del personaje que quieres usar para luchar (1-11):");
         int indiceElegido;
         while (!int.TryParse(Console.ReadLine(), out indiceElegido) || indiceElegido < 0 || indiceElegido >= personajes.Count)
         {
@@ -72,6 +74,7 @@ public class Program
 
         Personaje personajeUsuario = personajes[indiceElegido];
             Console.WriteLine("Personaje seleccionado:");
+            Console.WriteLine($"ID: {id}");  // Mostrar el ID
             Console.WriteLine($"Nombre: {personajeUsuario.Datos.Nombre}");
             Console.WriteLine($"Clase: {personajeUsuario.Datos.Clase}");
             Console.WriteLine($"Raza: {personajeUsuario.Datos.Raza}");

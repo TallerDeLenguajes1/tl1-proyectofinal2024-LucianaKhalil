@@ -7,10 +7,14 @@ public static class Combate{
         Random random=new Random();
         int iniciativaUsuario = random.Next(1, 21);
         int iniciativaEnemigo = random.Next(1, 21);
+        //tiradas de iniciativa
+         Console.WriteLine("\n===============================");
+        Console.WriteLine("¡La batalla se acerca!");
+        Console.WriteLine("===============================");
         Console.WriteLine("Tu enemigo y tu realizan una tirada de iniciativa con el dado D20");
         Console.WriteLine($"Iniciativa de {personajeUsuario.Datos.Nombre}: {iniciativaUsuario}");
         Console.WriteLine($"Iniciativa de {enemigo.Datos.Nombre}: {iniciativaEnemigo}");
-        bool usuarioComienza = iniciativaUsuario < iniciativaEnemigo;
+        bool usuarioComienza = iniciativaUsuario > iniciativaEnemigo;
         Console.WriteLine(usuarioComienza ? $"{personajeUsuario.Datos.Nombre} comienza el combate." : $"{enemigo.Datos.Nombre} comienza el combate.");
          //Tiradas de combate
         int resultadoD20Usuario = random.Next(1, 21);
@@ -18,6 +22,10 @@ public static class Combate{
 
         double poderUsuario = (personajeUsuario.Caracteristicas.Fuerza + personajeUsuario.Caracteristicas.Destreza + personajeUsuario.Caracteristicas.Velocidad) * (1 + (resultadoD20Usuario / 100.0));
         double poderEnemigo = (enemigo.Caracteristicas.Fuerza + enemigo.Caracteristicas.Destreza + enemigo.Caracteristicas.Velocidad) * (1 + (resultadoD20Enemigo / 100.0));
+
+        Console.WriteLine("Presiona cualquier tecla para iniciar el combate...");
+        Console.ReadKey();
+
         while(personajeUsuario.Datos.PuntosDeVida>0 && enemigo.Datos.PuntosDeVida>0){  
             if (usuarioComienza)
             {
@@ -29,6 +37,10 @@ public static class Combate{
                     Console.WriteLine($"{personajeUsuario.Datos.Nombre} ha derrotado a {enemigo.Datos.Nombre}!");
                     return true;
                 }
+
+                Console.WriteLine("Presiona cualquier tecla para continuar...");
+                Console.ReadKey();
+                
             }else//turno del enemigo
             {
                 Console.WriteLine($"{enemigo.Datos.Nombre} ataca a {personajeUsuario.Datos.Nombre}");
@@ -43,6 +55,7 @@ public static class Combate{
             }
        
                  usuarioComienza = !usuarioComienza; // Cambiar turno
+                Console.WriteLine("  ==================  ");
         }
         return personajeUsuario.Datos.PuntosDeVida > 0;
     }

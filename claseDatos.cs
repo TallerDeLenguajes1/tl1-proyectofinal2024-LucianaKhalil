@@ -9,6 +9,9 @@ namespace Proyecto
 {
     public class DatosPersonaje
     {
+        [JsonPropertyName("Id")]
+        public int Id { get; set; }
+
         [JsonPropertyName("nombre")]
         public string Nombre { get; set; }
 

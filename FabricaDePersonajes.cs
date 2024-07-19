@@ -6,6 +6,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using claseAPI;
 using caracteristicasBonosyRazas;
+using System.Data.Common;
 
 namespace Proyecto
 {
@@ -62,7 +63,7 @@ namespace Proyecto
                 Personaje personajeJson = new Personaje()
                 {
                     Datos = new DatosPersonaje
-                    {
+                    {  
                         Nombre = nombreAleatorio,
                         Clase = claseAleatoria.name,
                         Raza = razaAleatoria.name,
