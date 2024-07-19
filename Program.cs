@@ -18,7 +18,7 @@ public class Program
         if (manejadorDePersonajes.Existe(nombreArchivoPersonajes))
         {
             personajes = manejadorDePersonajes.LeerPersonajes(nombreArchivoPersonajes);
-            Console.WriteLine("Personajes cargados desde el archivo:");
+            Console.WriteLine("PERSONAJES");
         }
         else
         {
@@ -55,7 +55,7 @@ public class Program
         }
 
         Personaje personajeUsuario = personajes[indiceElegido];
-            Console.WriteLine("Personaje seleccionado:\n");
+            Console.WriteLine("Personaje seleccionado:");
             Console.WriteLine($"Nombre: {personajeUsuario.Datos.Nombre}");
             Console.WriteLine($"Clase: {personajeUsuario.Datos.Clase}");
             Console.WriteLine($"Raza: {personajeUsuario.Datos.Raza}");

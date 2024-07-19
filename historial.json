@@ -1,0 +1,15 @@
+[
+  {
+    "datos": {
+      "nombre": "Dalinar",
+      "clase": "Monk",
+      "puntosDeVida": 25,
+      "raza": "Gnome"
+    },
+    "caracteristicas": {
+      "fuerza": 7,
+      "destreza": 14,
+      "velocidad": 20
+    }
+  }
+]
