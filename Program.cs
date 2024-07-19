@@ -19,7 +19,7 @@ public class Program
         string titulo = "El Archivo de las tormentas";
         Console.WriteLine("\n                                       ==================================================");
         Console.WriteLine($"                                                  {titulo.ToUpper()}      ");
-        Console.WriteLine("                                        ==================================================\n");
+        Console.WriteLine("                                       ==================================================\n");
         Console.ResetColor();
 
         // Mostrar introducción con efecto de escritura
@@ -50,7 +50,7 @@ public class Program
         Console.WriteLine("==== LISTA DE PERSONAJES ====");    // Mostrar información de los personajes
         int id = 1; // Inicializa el contador en 1
         foreach (var personaje in personajes)
-        {
+        {   
             Console.WriteLine($"ID: {id}");
             Console.WriteLine($"Nombre: {personaje.Datos.Nombre}");
             Console.WriteLine($"Clase: {personaje.Datos.Clase}");
@@ -62,6 +62,7 @@ public class Program
             Console.WriteLine($"  Velocidad: {personaje.Caracteristicas.Velocidad}");
             Console.WriteLine("******************");
             id++;
+             await Task.Delay(1000); // Esperar 1 segundo
         }
 
         // Permitir al usuario elegir un personaje para luchar contra los otros 9
@@ -73,6 +74,7 @@ public class Program
         }
 
         Personaje personajeUsuario = personajes[indiceElegido];
+        Console.ForegroundColor = TextoExitoColor;
             Console.WriteLine("Personaje seleccionado:");
             Console.WriteLine($"ID: {id}");  // Mostrar el ID
             Console.WriteLine($"Nombre: {personajeUsuario.Datos.Nombre}");
@@ -83,6 +85,7 @@ public class Program
             Console.WriteLine($"  Fuerza: {personajeUsuario.Caracteristicas.Fuerza}");
             Console.WriteLine($"  Destreza: {personajeUsuario.Caracteristicas.Destreza}");
             Console.WriteLine($"  Velocidad: {personajeUsuario.Caracteristicas.Velocidad}");
+            Console.ResetColor();
 
         List<Personaje> enemigos = new List<Personaje>(personajes);
         enemigos.RemoveAt(indiceElegido);//separar personaje usuario de los enemigos
@@ -97,8 +100,10 @@ public class Program
             if(!ganadorUsuario){
                 break;
             }else{
+                Console.ForegroundColor = TextoExitoColor;
                 Console.WriteLine($"Pelea contra: {enemigo.Datos.Nombre}");
                 Console.WriteLine("************************");
+                Console.ResetColor();
                 //SIMULAR TIRADA DE DADOS D20
                 Console.WriteLine("Tira un dado de 20 caras y elige a que caracteristicas deseas sumarle el resultado(1:Fuerza, 2:Destreza o 3:Velocidad)");
                 int caracteristicaElegida;
@@ -119,10 +124,12 @@ public class Program
                         personajeUsuario.Caracteristicas.Velocidad+=resultadoD20;
                     break;
         }
+            Console.ForegroundColor = TextoNormalColor;
             Console.WriteLine("Características actualizadas del personaje elegido:");
             Console.WriteLine($"  Fuerza: {personajeUsuario.Caracteristicas.Fuerza}");
             Console.WriteLine($"  Destreza: {personajeUsuario.Caracteristicas.Destreza}");
             Console.WriteLine($"  Velocidad: {personajeUsuario.Caracteristicas.Velocidad}");
+            Console.ResetColor();
             //bonos d20 aleatorio para cada enemigo
             int resultadoD20enemigo=random.Next(1,21);
             Console.WriteLine($"Resultado del dado para el enemigo: {resultadoD20enemigo}");//eliminar despues
@@ -143,13 +150,20 @@ public class Program
                     break;
             }
                 //COMBATE
+                Console.ForegroundColor = TextoDestacadoColor;
                 Console.WriteLine("Comienza el combate:");
+                Console.ResetColor();
+
                 ganadorUsuario=Combate.FormulaCombate(personajeUsuario, enemigo);
                 if(ganadorUsuario){
-                     Console.WriteLine($"¡{personajeUsuario.Datos.Nombre} ha ganado la pelea contra {enemigo.Datos.Nombre}!");
+                    Console.ForegroundColor = TextoExitoColor;
+                    Console.WriteLine($"¡{personajeUsuario.Datos.Nombre} ha ganado la pelea contra {enemigo.Datos.Nombre}!");
+                    Console.ResetColor();
                      ganadores.Add(personajeUsuario);
                 }else{
+                     Console.ForegroundColor = TextoErrorColor;
                     Console.WriteLine($"¡{personajeUsuario.Datos.Nombre} ha perdido la pelea contra {enemigo.Datos.Nombre}!");
+                    Console.ResetColor();
                     ganadores.Add(enemigo);
                 }
 
@@ -157,7 +171,9 @@ public class Program
         }
         // Guardar los ganadores en "historial.json"
         manejadorDePersonajes.GuardarPersonajes(ganadores, nombreArchivoHistorial);
+        Console.ForegroundColor = TextoExitoColor;
         Console.WriteLine("Ganadores guardados en historial.json");
+        Console.ResetColor();
     }
 
 }

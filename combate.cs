@@ -9,7 +9,7 @@ public static class Combate{
         int iniciativaEnemigo = random.Next(1, 21);
         //tiradas de iniciativa
          Console.WriteLine("\n===============================");
-        Console.WriteLine("¡La batalla se acerca!");
+        Console.WriteLine("¡El duelo comienza!");
         Console.WriteLine("===============================");
         Console.WriteLine("Tu enemigo y tu realizan una tirada de iniciativa con el dado D20");
         Console.WriteLine($"Iniciativa de {personajeUsuario.Datos.Nombre}: {iniciativaUsuario}");
