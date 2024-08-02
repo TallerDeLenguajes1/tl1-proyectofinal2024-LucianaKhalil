@@ -68,15 +68,15 @@ public class Program
         // Permitir al usuario elegir un personaje para luchar contra los otros 9
         Console.WriteLine("Elige el indice del personaje que quieres usar para luchar (1-11):");
         int indiceElegido;
-        while (!int.TryParse(Console.ReadLine(), out indiceElegido) || indiceElegido < 0 || indiceElegido >= personajes.Count)
+        while (!int.TryParse(Console.ReadLine(), out indiceElegido) || indiceElegido < 1 || indiceElegido > 11)
         {
-            Console.WriteLine("Indice inválido. Por favor elige un numero entre 0 y 9:");
+            Console.WriteLine("Indice inválido. Por favor elige un numero entre 1 y 11:");
         }
 
-        Personaje personajeUsuario = personajes[indiceElegido];
+        Personaje personajeUsuario = personajes[indiceElegido-1];
         Console.ForegroundColor = TextoExitoColor;
             Console.WriteLine("Personaje seleccionado:");
-            Console.WriteLine($"ID: {id}");  // Mostrar el ID
+            Console.WriteLine($"ID: {id-1}");  // Mostrar el ID
             Console.WriteLine($"Nombre: {personajeUsuario.Datos.Nombre}");
             Console.WriteLine($"Clase: {personajeUsuario.Datos.Clase}");
             Console.WriteLine($"Raza: {personajeUsuario.Datos.Raza}");
@@ -88,7 +88,7 @@ public class Program
             Console.ResetColor();
 
         List<Personaje> enemigos = new List<Personaje>(personajes);
-        enemigos.RemoveAt(indiceElegido);//separar personaje usuario de los enemigos
+        enemigos.RemoveAt(indiceElegido-1);//separar personaje usuario de los enemigos
 
         
         List<Personaje> ganadores = new List<Personaje>();//lista para guardar ganadores
