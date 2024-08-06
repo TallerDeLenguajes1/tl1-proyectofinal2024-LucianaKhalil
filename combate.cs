@@ -14,7 +14,9 @@ public static class Combate{
         Console.WriteLine("Tu enemigo y tu realizan una tirada de iniciativa con el dado D20");
         Console.WriteLine($"Iniciativa de {personajeUsuario.Datos.Nombre}: {iniciativaUsuario}");
         Console.WriteLine($"Iniciativa de {enemigo.Datos.Nombre}: {iniciativaEnemigo}");
-        bool usuarioComienza = iniciativaUsuario > iniciativaEnemigo;
+
+        bool usuarioComienza = iniciativaUsuario >= iniciativaEnemigo;
+
         Console.WriteLine(usuarioComienza ? $"{personajeUsuario.Datos.Nombre} comienza el combate." : $"{enemigo.Datos.Nombre} comienza el combate.");
          //Tiradas de combate
         int resultadoD20Usuario = random.Next(1, 21);
@@ -23,8 +25,8 @@ public static class Combate{
         double poderUsuario = (personajeUsuario.Caracteristicas.Fuerza + personajeUsuario.Caracteristicas.Destreza + personajeUsuario.Caracteristicas.Velocidad) * (1 + (resultadoD20Usuario / 100.0));
         double poderEnemigo = (enemigo.Caracteristicas.Fuerza + enemigo.Caracteristicas.Destreza + enemigo.Caracteristicas.Velocidad) * (1 + (resultadoD20Enemigo / 100.0));
 
-        Console.WriteLine("Presiona cualquier tecla para iniciar el combate...");
-        Console.ReadKey();
+        Console.WriteLine("Presiona cualquier tecla para iniciar el combate...\n");
+        Console.ReadKey(true);
 
         while(personajeUsuario.Datos.PuntosDeVida>0 && enemigo.Datos.PuntosDeVida>0){  
             if (usuarioComienza)
@@ -39,7 +41,7 @@ public static class Combate{
                 }
 
                 Console.WriteLine("Presiona cualquier tecla para continuar...");
-                Console.ReadKey();
+                Console.ReadKey(true);
                 
             }else//turno del enemigo
             {

@@ -1,75 +1,123 @@
 [
   {
     "datos": {
-      "nombre": "Dalinar",
-      "clase": "Monk",
-      "puntosDeVida": 100,
-      "raza": "Gnome"
-    },
-    "caracteristicas": {
-      "fuerza": 7,
-      "destreza": 14,
-      "velocidad": 10
-    }
-  },
-  {
-    "datos": {
-      "nombre": "Renarin",
-      "clase": "Rogue",
-      "puntosDeVida": 100,
-      "raza": "Half-Elf"
-    },
-    "caracteristicas": {
-      "fuerza": 8,
-      "destreza": 17,
-      "velocidad": 8
-    }
-  },
-  {
-    "datos": {
-      "nombre": "Jasnah",
-      "clase": "Warlock",
-      "puntosDeVida": 100,
-      "raza": "Tiefling"
-    },
-    "caracteristicas": {
-      "fuerza": 8,
-      "destreza": 7,
-      "velocidad": 11
-    }
-  },
-  {
-    "datos": {
-      "nombre": "Lift",
-      "clase": "Monk",
-      "puntosDeVida": 100,
-      "raza": "Gnome"
-    },
-    "caracteristicas": {
-      "fuerza": 7,
-      "destreza": 14,
-      "velocidad": 10
-    }
-  },
-  {
-    "datos": {
+      "Id": 0,
       "nombre": "Hoid",
-      "clase": "Ranger",
+      "clase": "Fighter",
       "puntosDeVida": 100,
       "raza": "Human"
     },
     "caracteristicas": {
-      "fuerza": 9,
-      "destreza": 14,
+      "fuerza": 13,
+      "destreza": 11,
       "velocidad": 12
     }
   },
   {
     "datos": {
-      "nombre": "Kaladin",
-      "clase": "Rogue",
+      "Id": 0,
+      "nombre": "Shallan",
+      "clase": "Warlock",
       "puntosDeVida": 100,
       "raza": "Elf"
+    },
+    "caracteristicas": {
+      "fuerza": 8,
+      "destreza": 10,
+      "velocidad": 11
+    }
+  },
+  {
+    "datos": {
+      "Id": 0,
+      "nombre": "Jasnah",
+      "clase": "Paladin",
+      "puntosDeVida": 100,
+      "raza": "Dwarf"
+    },
+    "caracteristicas": {
+      "fuerza": 11,
+      "destreza": 10,
+      "velocidad": 14
+    }
+  },
+  {
+    "datos": {
+      "Id": 0,
+      "nombre": "Szeth",
+      "clase": "Rogue",
+      "puntosDeVida": 100,
+      "raza": "Halfling"
+    },
+    "caracteristicas": {
+      "fuerza": 5,
+      "destreza": 16,
+      "velocidad": 8
+    }
+  },
+  {
+    "datos": {
+      "Id": 0,
+      "nombre": "Renarin",
+      "clase": "Wizard",
+      "puntosDeVida": 100,
+      "raza": "Human"
+    },
+    "caracteristicas": {
+      "fuerza": 7,
+      "destreza": 11,
+      "velocidad": 9
+    }
+  },
+  {
+    "datos": {
+      "Id": 0,
+      "nombre": "Adolin",
+      "clase": "Cleric",
+      "puntosDeVida": 100,
+      "raza": "Dwarf"
+    },
+    "caracteristicas": {
+      "fuerza": 7,
+      "destreza": 10,
+      "velocidad": 12
+    }
+  },
+  {
+    "datos": {
+      "Id": 0,
+      "nombre": "Dalinar",
+      "clase": "Monk",
+      "puntosDeVida": 100,
+      "raza": "Human"
+    },
+    "caracteristicas": {
+      "fuerza": 10,
+      "destreza": 13,
+      "velocidad": 11
+    }
+  },
+  {
+    "datos": {
+      "Id": 0,
+      "nombre": "Lift",
+      "clase": "Warlock",
+      "puntosDeVida": 100,
+      "raza": "Half-Orc"
+    },
+    "caracteristicas": {
+      "fuerza": 11,
+      "destreza": 7,
+      "velocidad": 13
+    }
+  },
+  {
+    "datos": {
+      "Id": 0,
+      "nombre": "Taravangian",
+      "clase": "Bard",
+      "puntosDeVida": 100,
+      "raza": "Halfling"
     },
     "caracteristicas": {
       "fuerza": 6,
@@ -79,67 +127,30 @@
   },
   {
     "datos": {
-      "nombre": "Szeth",
+      "Id": 0,
+      "nombre": "Elhokar",
+      "clase": "Sorcerer",
+      "puntosDeVida": 100,
+      "raza": "Elf"
+    },
+    "caracteristicas": {
+      "fuerza": 5,
+      "destreza": 11,
+      "velocidad": 8
+    }
+  },
+  {
+    "datos": {
+      "Id": 0,
+      "nombre": "Kaladin",
       "clase": "Barbarian",
       "puntosDeVida": 100,
-      "raza": "Tiefling"
+      "raza": "Gnome"
     },
     "caracteristicas": {
-      "fuerza": 12,
-      "destreza": 10,
-      "velocidad": 13
-    }
-  },
-  {
-    "datos": {
-      "nombre": "Elhokar",
-      "clase": "Rogue",
-      "puntosDeVida": 100,
-      "raza": "Tiefling"
-    },
-    "caracteristicas": {
-      "fuerza": 6,
-      "destreza": 13,
-      "velocidad": 10
-    }
-  },
-  {
-    "datos": {
-      "nombre": "Shallan",
-      "clase": "Wizard",
-      "puntosDeVida": 100,
-      "raza": "Tiefling"
-    },
-    "caracteristicas": {
-      "fuerza": 5,
-      "destreza": 10,
-      "velocidad": 9
-    }
-  },
-  {
-    "datos": {
-      "nombre": "Adolin",
-      "clase": "Druid",
-      "puntosDeVida": 100,
-      "raza": "Half-Elf"
-    },
-    "caracteristicas": {
-      "fuerza": 7,
+      "fuerza": 11,
       "destreza": 12,
-      "velocidad": 6
-    }
-  },
-  {
-    "datos": {
-      "nombre": "Taravangian",
-      "clase": "Druid",
-      "puntosDeVida": 100,
-      "raza": "Tiefling"
-    },
-    "caracteristicas": {
-      "fuerza": 5,
-      "destreza": 8,
-      "velocidad": 8
+      "velocidad": 12
     }
   }
 ]

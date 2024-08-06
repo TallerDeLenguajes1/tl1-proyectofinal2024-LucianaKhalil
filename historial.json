@@ -1,15 +1,16 @@
 [
   {
     "datos": {
-      "nombre": "Dalinar",
-      "clase": "Monk",
-      "puntosDeVida": 12,
-      "raza": "Gnome"
+      "Id": 0,
+      "nombre": "Hoid",
+      "clase": "Fighter",
+      "puntosDeVida": 56,
+      "raza": "Human"
     },
     "caracteristicas": {
-      "fuerza": 7,
-      "destreza": 21,
-      "velocidad": 10
+      "fuerza": 13,
+      "destreza": 28,
+      "velocidad": 12
     }
   }
 ]

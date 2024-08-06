@@ -15,7 +15,7 @@ public static class ConsolaFormato
     }
 
     // Método para mostrar texto con efecto de escritura en color
-    public static async Task EscribirConEfecto(string texto, ConsoleColor color, int velocidadMs = 20)
+    public static async Task EscribirConEfecto(string texto, ConsoleColor color, int velocidadMs = 10)
     {
         Console.ForegroundColor = color;
         await EscribirConEfecto(texto, velocidadMs);
