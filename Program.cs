@@ -12,6 +12,7 @@ namespace ArchivoDeLasTormentas
         private static readonly ConsoleColor TextoErrorColor = ConsoleColor.Red;
         private static readonly ConsoleColor TextoExitoColor = ConsoleColor.Green;
 
+
         private static string nombreArchivoPersonajes = "personaje.json";
         private static string nombreArchivoHistorial = "historial.json";
 
@@ -142,8 +143,16 @@ namespace ArchivoDeLasTormentas
                 }
                 else
                 {
-                    Console.ForegroundColor = TextoExitoColor;
+                    Console.ForegroundColor = TextoErrorColor;
+                     Console.WriteLine("===================================");
                     Console.WriteLine($"Pelea contra: {enemigo.Datos.Nombre}");
+                    Console.WriteLine($"Clase: {enemigo.Datos.Clase}");
+                    Console.WriteLine($"Raza: {enemigo.Datos.Raza}");
+                    Console.WriteLine($"Puntos de Vida: {enemigo.Datos.PuntosDeVida}");
+                    Console.WriteLine("Características:");
+                    Console.WriteLine($"  Fuerza: {enemigo.Caracteristicas.Fuerza}");
+                    Console.WriteLine($"  Destreza: {enemigo.Caracteristicas.Destreza}");
+                    Console.WriteLine($"  Velocidad: {enemigo.Caracteristicas.Velocidad}");
                     Console.WriteLine("===========================");
                     Console.ResetColor();
 

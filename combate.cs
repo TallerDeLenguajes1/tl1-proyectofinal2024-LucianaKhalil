@@ -4,12 +4,15 @@ using Proyecto;
 
 public static class Combate
 {
-    private const int MAX_VIDA = 100; // Valor máximo de puntos de vida para escalar la barra
+    private const int MAX_VIDA = 100; // inicializo en 100
+    private const double BONIFICACION_USUARIO = 1.1; // 10% para el usuario
+    private const double REDUCCION_DAÑO_ENEMIGO = 0.9; //reduccion 10% daño al usuario
+    private const int CURACION_USUARIO = 20; // Cantidad de puntos de vida curados
 
     public static bool FormulaCombate(Personaje personajeUsuario, Personaje enemigo)
     {
         Random random = new Random();
-        int iniciativaUsuario = random.Next(1, 21);
+        int iniciativaUsuario = (int)(random.Next(1, 21) * BONIFICACION_USUARIO);
         int iniciativaEnemigo = random.Next(1, 21);
 
         Console.WriteLine("\n===============================");
@@ -37,7 +40,7 @@ public static class Combate
             }
             else
             {
-                RealizarAtaque(enemigo, personajeUsuario);
+                RealizarAtaque(enemigo, personajeUsuario, true); // true para indicar que es un ataque enemigo
                 usuarioComienza = !usuarioComienza;
             }
 
@@ -52,6 +55,14 @@ public static class Combate
                 return false;
             }
 
+            // Ocasionalmente curar al usuario
+            if (random.Next(1, 11) <= 3) // 30% de probabilidad de curación en cada ronda
+            {
+                personajeUsuario.Datos.PuntosDeVida += CURACION_USUARIO;
+                personajeUsuario.Datos.PuntosDeVida = Math.Min(MAX_VIDA, personajeUsuario.Datos.PuntosDeVida);
+                Console.WriteLine($"{personajeUsuario.Datos.Nombre} se ha curado {CURACION_USUARIO} puntos de vida!");
+            }
+
             Console.WriteLine("Presiona cualquier tecla para continuar...");
             Console.ReadKey(true);
         }
@@ -59,11 +70,12 @@ public static class Combate
         return personajeUsuario.Datos.PuntosDeVida > 0;
     }
 
-    private static void RealizarAtaque(Personaje atacante, Personaje defensor)
+    private static void RealizarAtaque(Personaje atacante, Personaje defensor, bool esEnemigo = false)
     {
         Random random = new Random();
         int resultadoD20 = random.Next(1, 21);
-        double poder = (atacante.Caracteristicas.Fuerza + atacante.Caracteristicas.Destreza + atacante.Caracteristicas.Velocidad) * (1 + (resultadoD20 / 100.0));
+        double multiplicador = esEnemigo ? REDUCCION_DAÑO_ENEMIGO : BONIFICACION_USUARIO;
+        double poder = (atacante.Caracteristicas.Fuerza + atacante.Caracteristicas.Destreza + atacante.Caracteristicas.Velocidad) * (1 + (resultadoD20 / 100.0)) * multiplicador;
 
         Console.WriteLine($"{atacante.Datos.Nombre} ataca a {defensor.Datos.Nombre}!");
         Thread.Sleep(500); // Simula una pausa para el ataque
