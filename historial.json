@@ -4,12 +4,12 @@
       "Id": 0,
       "nombre": "Hoid",
       "clase": "Fighter",
-      "puntosDeVida": 56,
+      "puntosDeVida": 2,
       "raza": "Human"
     },
     "caracteristicas": {
       "fuerza": 13,
-      "destreza": 28,
+      "destreza": 18,
       "velocidad": 12
     }
   }
