@@ -7,14 +7,18 @@ namespace Proyecto
 {
     public class HistorialJson
     {
-        public void GuardarGanador(Personaje ganador, List<Personaje> enemigos, string nombreArchivo)
+        public void GuardarGanador(Personaje ganador, string nombreArchivo)
         {
             try
             {
                 var historial = new
                 {
-                    Ganador = ganador,
-                    Enemigos = enemigos
+                    Ganador = new
+                    {
+                        Datos = ganador.Datos,
+                        Caracteristicas = ganador.Caracteristicas
+                    },
+                    FechaYHora = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") // Fecha y hora actual
                 };
 
                 var opcionesJson = new JsonSerializerOptions { WriteIndented = true };

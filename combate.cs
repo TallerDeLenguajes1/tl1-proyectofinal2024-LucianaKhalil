@@ -6,7 +6,7 @@ public static class Combate
 {
     private const int MAX_VIDA = 100; // inicializo en 100
     private const double BONIFICACION_USUARIO = 1.1; // 10% para el usuario
-    private const double REDUCCION_DAÑO_ENEMIGO = 0.9; // reduccion 10% daño al usuario
+    private const double REDUCCION_DAÑO_ENEMIGO = 0.9; // reducción 10% daño al usuario
     private const int CURACION_USUARIO = 20; // Cantidad de puntos de vida curados
 
     public static bool FormulaCombate(Personaje personajeUsuario, Personaje enemigo)
@@ -82,6 +82,11 @@ public static class Combate
             Console.WriteLine("Presiona cualquier tecla para continuar...");
             Console.ReadKey(true);
         }
+
+        // Restaurar las características originales del personaje si el combate termina por derrota
+        personajeUsuario.Caracteristicas.Fuerza = fuerzaOriginal;
+        personajeUsuario.Caracteristicas.Destreza = destrezaOriginal;
+        personajeUsuario.Caracteristicas.Velocidad = velocidadOriginal;
 
         return personajeUsuario.Datos.PuntosDeVida > 0;
     }

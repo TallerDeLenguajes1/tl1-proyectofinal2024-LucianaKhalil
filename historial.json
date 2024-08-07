@@ -1,16 +1,17 @@
-[
-  {
-    "datos": {
+{
+  "Ganador": {
+    "Datos": {
       "Id": 0,
       "nombre": "Hoid",
       "clase": "Fighter",
-      "puntosDeVida": 21,
+      "puntosDeVida": 100,
       "raza": "Human"
     },
-    "caracteristicas": {
-      "fuerza": 13,
-      "destreza": 24,
-      "velocidad": 12
+    "Caracteristicas": {
+      "fuerza": 51,
+      "destreza": 32,
+      "velocidad": 67
     }
-  }
-]
+  },
+  "FechaYHora": "2024-08-07 13:37:10"
+}

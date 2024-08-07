@@ -69,125 +69,129 @@ namespace ArchivoDeLasTormentas
             return opcion;
         }
 
-        private static async Task Jugar()
-        {
-            FabricaDePersonajes fabrica = new FabricaDePersonajes();
-            PersonajesJson manejadorDePersonajes = new PersonajesJson();
-            List<Personaje> personajes = new List<Personaje>();
+       private static async Task Jugar()
+{
+    FabricaDePersonajes fabrica = new FabricaDePersonajes();
+    PersonajesJson manejadorDePersonajes = new PersonajesJson();
+    List<Personaje> personajes = new List<Personaje>();
 
-            if (manejadorDePersonajes.Existe(nombreArchivoPersonajes))
+    if (manejadorDePersonajes.Existe(nombreArchivoPersonajes))
+    {
+        personajes = manejadorDePersonajes.LeerPersonajes(nombreArchivoPersonajes);
+    }
+    else
+    {
+        for (int i = 0; i < 11; i++)
+        {
+            Personaje personaje = await fabrica.ObtenerPersonaje();
+            personajes.Add(personaje);
+        }
+        manejadorDePersonajes.GuardarPersonajes(personajes, nombreArchivoPersonajes);
+    }
+
+    Console.WriteLine("==== LISTA DE PERSONAJES ====");
+    int id = 1;
+    foreach (var personaje in personajes)
+    {
+        Console.WriteLine($"ID: {id}");
+        Console.WriteLine($"Nombre: {personaje.Datos.Nombre}");
+        Console.WriteLine($"Clase: {personaje.Datos.Clase}");
+        Console.WriteLine($"Raza: {personaje.Datos.Raza}");
+        Console.WriteLine($"Puntos de Vida: {personaje.Datos.PuntosDeVida}");
+        Console.WriteLine("Características:");
+        Console.WriteLine($"  Fuerza: {personaje.Caracteristicas.Fuerza}");
+        Console.WriteLine($"  Destreza: {personaje.Caracteristicas.Destreza}");
+        Console.WriteLine($"  Velocidad: {personaje.Caracteristicas.Velocidad}");
+        Console.WriteLine("===================================");
+        id++;
+        await Task.Delay(1000); // Esperar 1 segundo
+    }
+
+    Console.WriteLine("Elige el índice del personaje que quieres usar para luchar (1-11):");
+    int indiceElegido;
+    while (!int.TryParse(Console.ReadLine(), out indiceElegido) || indiceElegido < 1 || indiceElegido > 11)
+    {
+        Console.WriteLine("Índice inválido. Por favor, elige un número entre 1 y 11:");
+    }
+
+    Personaje personajeUsuario = personajes[indiceElegido - 1];
+    Console.ForegroundColor = TextoExitoColor;
+    Console.WriteLine("Personaje seleccionado:");
+    Console.WriteLine($"ID: {indiceElegido}");
+    Console.WriteLine($"Nombre: {personajeUsuario.Datos.Nombre}");
+    Console.WriteLine($"Clase: {personajeUsuario.Datos.Clase}");
+    Console.WriteLine($"Raza: {personajeUsuario.Datos.Raza}");
+    Console.WriteLine($"Puntos de Vida: {personajeUsuario.Datos.PuntosDeVida}");
+    Console.WriteLine("Características:");
+    Console.WriteLine($"  Fuerza: {personajeUsuario.Caracteristicas.Fuerza}");
+    Console.WriteLine($"  Destreza: {personajeUsuario.Caracteristicas.Destreza}");
+    Console.WriteLine($"  Velocidad: {personajeUsuario.Caracteristicas.Velocidad}");
+    Console.ResetColor();
+
+    List<Personaje> enemigos = new List<Personaje>(personajes);
+    enemigos.RemoveAt(indiceElegido - 1);
+
+    bool ganadorUsuario = true;
+    Random random = new Random();
+
+    foreach (var enemigo in enemigos)
+    {
+        if (!ganadorUsuario)
+        {
+            break;
+        }
+        else
+        {
+            Console.ForegroundColor = TextoErrorColor;
+            Console.WriteLine("===================================");
+            Console.WriteLine($"Pelea contra: {enemigo.Datos.Nombre}");
+            Console.WriteLine($"Clase: {enemigo.Datos.Clase}");
+            Console.WriteLine($"Raza: {enemigo.Datos.Raza}");
+            Console.WriteLine($"Puntos de Vida: {enemigo.Datos.PuntosDeVida}");
+            Console.WriteLine("Características:");
+            Console.WriteLine($"  Fuerza: {enemigo.Caracteristicas.Fuerza}");
+            Console.WriteLine($"  Destreza: {enemigo.Caracteristicas.Destreza}");
+            Console.WriteLine($"  Velocidad: {enemigo.Caracteristicas.Velocidad}");
+            Console.WriteLine("===========================");
+            Console.ResetColor();
+
+            await MostrarTiradaDeDados(personajeUsuario, enemigo, random);
+
+            ganadorUsuario = Combate.FormulaCombate(personajeUsuario, enemigo);
+            if (ganadorUsuario)
             {
-                personajes = manejadorDePersonajes.LeerPersonajes(nombreArchivoPersonajes);
+                Console.ForegroundColor = TextoExitoColor;
+                Console.WriteLine($"¡{personajeUsuario.Datos.Nombre} ha ganado la pelea contra {enemigo.Datos.Nombre}!");
+                Console.ResetColor();
             }
             else
             {
-                for (int i = 0; i < 11; i++)
-                {
-                    Personaje personaje = await fabrica.ObtenerPersonaje();
-                    personajes.Add(personaje);
-                }
-                manejadorDePersonajes.GuardarPersonajes(personajes, nombreArchivoPersonajes);
-            }
-
-            Console.WriteLine("==== LISTA DE PERSONAJES ====");
-            int id = 1;
-            foreach (var personaje in personajes)
-            {
-                Console.WriteLine($"ID: {id}");
-                Console.WriteLine($"Nombre: {personaje.Datos.Nombre}");
-                Console.WriteLine($"Clase: {personaje.Datos.Clase}");
-                Console.WriteLine($"Raza: {personaje.Datos.Raza}");
-                Console.WriteLine($"Puntos de Vida: {personaje.Datos.PuntosDeVida}");
-                Console.WriteLine("Características:");
-                Console.WriteLine($"  Fuerza: {personaje.Caracteristicas.Fuerza}");
-                Console.WriteLine($"  Destreza: {personaje.Caracteristicas.Destreza}");
-                Console.WriteLine($"  Velocidad: {personaje.Caracteristicas.Velocidad}");
-                Console.WriteLine("===================================");
-                id++;
-                await Task.Delay(1000); // Esperar 1 segundo
-            }
-
-            Console.WriteLine("Elige el índice del personaje que quieres usar para luchar (1-11):");
-            int indiceElegido;
-            while (!int.TryParse(Console.ReadLine(), out indiceElegido) || indiceElegido < 1 || indiceElegido > 11)
-            {
-                Console.WriteLine("Índice inválido. Por favor, elige un número entre 1 y 11:");
-            }
-
-            Personaje personajeUsuario = personajes[indiceElegido - 1];
-            Console.ForegroundColor = TextoExitoColor;
-            Console.WriteLine("Personaje seleccionado:");
-            Console.WriteLine($"ID: {indiceElegido}");
-            Console.WriteLine($"Nombre: {personajeUsuario.Datos.Nombre}");
-            Console.WriteLine($"Clase: {personajeUsuario.Datos.Clase}");
-            Console.WriteLine($"Raza: {personajeUsuario.Datos.Raza}");
-            Console.WriteLine($"Puntos de Vida: {personajeUsuario.Datos.PuntosDeVida}");
-            Console.WriteLine("Características:");
-            Console.WriteLine($"  Fuerza: {personajeUsuario.Caracteristicas.Fuerza}");
-            Console.WriteLine($"  Destreza: {personajeUsuario.Caracteristicas.Destreza}");
-            Console.WriteLine($"  Velocidad: {personajeUsuario.Caracteristicas.Velocidad}");
-            Console.ResetColor();
-
-            List<Personaje> enemigos = new List<Personaje>(personajes);
-            enemigos.RemoveAt(indiceElegido - 1);
-
-            List<Personaje> ganadores = new List<Personaje>();
-            bool ganadorUsuario = true;
-            Random random = new Random();
-
-            foreach (var enemigo in enemigos)
-            {
-                if (!ganadorUsuario)
-                {
-                    break;
-                }
-                else
-                {
-                    Console.ForegroundColor = TextoErrorColor;
-                     Console.WriteLine("===================================");
-                    Console.WriteLine($"Pelea contra: {enemigo.Datos.Nombre}");
-                    Console.WriteLine($"Clase: {enemigo.Datos.Clase}");
-                    Console.WriteLine($"Raza: {enemigo.Datos.Raza}");
-                    Console.WriteLine($"Puntos de Vida: {enemigo.Datos.PuntosDeVida}");
-                    Console.WriteLine("Características:");
-                    Console.WriteLine($"  Fuerza: {enemigo.Caracteristicas.Fuerza}");
-                    Console.WriteLine($"  Destreza: {enemigo.Caracteristicas.Destreza}");
-                    Console.WriteLine($"  Velocidad: {enemigo.Caracteristicas.Velocidad}");
-                    Console.WriteLine("===========================");
-                    Console.ResetColor();
-
-                    await MostrarTiradaDeDados(personajeUsuario, enemigo, random);
-
-                    ganadorUsuario = Combate.FormulaCombate(personajeUsuario, enemigo);
-                    if (ganadorUsuario)
-                    {
-                        Console.ForegroundColor = TextoExitoColor;
-                        Console.WriteLine($"¡{personajeUsuario.Datos.Nombre} ha ganado la pelea contra {enemigo.Datos.Nombre}!");
-                        Console.ResetColor();
-                        ganadores.Add(personajeUsuario);
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = TextoErrorColor;
-                        Console.WriteLine($"¡{personajeUsuario.Datos.Nombre} ha perdido la pelea contra {enemigo.Datos.Nombre}!");
-                        Console.ResetColor();
-                        ganadores.Add(enemigo);
-                    }
-                }
-            }
-             if (ganadorUsuario)
-            {
-                Console.ForegroundColor = TextoExitoColor;
-                Console.WriteLine("¡Felicidades! ¡Has derrotado a todos los enemigos y ganado el juego!");
+                Console.ForegroundColor = TextoErrorColor;
+                Console.WriteLine($"¡{personajeUsuario.Datos.Nombre} ha perdido la pelea contra {enemigo.Datos.Nombre}!");
                 Console.ResetColor();
             }
-            manejadorDePersonajes.GuardarPersonajes(ganadores, nombreArchivoHistorial);
-            Console.ForegroundColor = TextoExitoColor;
-            Console.WriteLine("Ganadores guardados en historial.json");
-            Console.ResetColor();
-            Console.WriteLine("Presiona cualquier tecla para volver al menú principal...");
-            Console.ReadKey();
         }
+    }
+
+    if (ganadorUsuario)
+    {
+        Console.ForegroundColor = TextoExitoColor;
+        Console.WriteLine("¡Felicidades! ¡Has derrotado a todos los enemigos y ganado el juego!");
+        Console.ResetColor();
+        HistorialJson historial = new HistorialJson();
+        historial.GuardarGanador(personajeUsuario, nombreArchivoHistorial);
+        Console.ForegroundColor = TextoExitoColor;
+        Console.WriteLine("Ganador guardado en historial.json");
+        Console.ResetColor();
+    }
+    else
+    {
+        Console.WriteLine("No has logrado derrotar a todos los enemigos. No se guardará el historial.");
+    }
+
+    Console.WriteLine("Presiona cualquier tecla para volver al menú principal...");
+    Console.ReadKey();
+}
 
         private static async Task MostrarTiradaDeDados(Personaje personajeUsuario, Personaje enemigo, Random random)
         {
