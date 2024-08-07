@@ -6,7 +6,7 @@ public static class Combate
 {
     private const int MAX_VIDA = 100; // inicializo en 100
     private const double BONIFICACION_USUARIO = 1.1; // 10% para el usuario
-    private const double REDUCCION_DAÑO_ENEMIGO = 0.9; //reduccion 10% daño al usuario
+    private const double REDUCCION_DAÑO_ENEMIGO = 0.9; // reduccion 10% daño al usuario
     private const int CURACION_USUARIO = 20; // Cantidad de puntos de vida curados
 
     public static bool FormulaCombate(Personaje personajeUsuario, Personaje enemigo)
@@ -15,10 +15,15 @@ public static class Combate
         int iniciativaUsuario = (int)(random.Next(1, 21) * BONIFICACION_USUARIO);
         int iniciativaEnemigo = random.Next(1, 21);
 
+        // Guardar las características originales del personaje
+        int fuerzaOriginal = personajeUsuario.Caracteristicas.Fuerza;
+        int destrezaOriginal = personajeUsuario.Caracteristicas.Destreza;
+        int velocidadOriginal = personajeUsuario.Caracteristicas.Velocidad;
+
         Console.WriteLine("\n===============================");
         Console.WriteLine("¡El duelo comienza!");
         Console.WriteLine("===============================");
-        Console.WriteLine("Tu enemigo y tu realizan una tirada de iniciativa con el dado D20");
+        Console.WriteLine("Tu enemigo y tú realizan una tirada de iniciativa con el dado D20");
         Console.WriteLine($"Iniciativa de {personajeUsuario.Datos.Nombre}: {iniciativaUsuario}");
         Console.WriteLine($"Iniciativa de {enemigo.Datos.Nombre}: {iniciativaEnemigo}");
 
@@ -44,9 +49,20 @@ public static class Combate
                 usuarioComienza = !usuarioComienza;
             }
 
+            // Mostrar estado del combate después del ataque
+            MostrarEstadoCombate(personajeUsuario, enemigo);
+
             if (enemigo.Datos.PuntosDeVida <= 0)
             {
                 Console.WriteLine($"{personajeUsuario.Datos.Nombre} ha derrotado a {enemigo.Datos.Nombre}!");
+                // Restaurar las características originales del personaje
+                personajeUsuario.Caracteristicas.Fuerza = fuerzaOriginal;
+                personajeUsuario.Caracteristicas.Destreza = destrezaOriginal;
+                personajeUsuario.Caracteristicas.Velocidad = velocidadOriginal;
+
+                // Curar al usuario después de ganar el combate
+                personajeUsuario.Datos.PuntosDeVida = MAX_VIDA;
+                Console.WriteLine($"{personajeUsuario.Datos.Nombre} ha recuperado toda su vida y ahora tiene {MAX_VIDA} puntos de vida.");
                 return true;
             }
             else if (personajeUsuario.Datos.PuntosDeVida <= 0)
@@ -79,6 +95,7 @@ public static class Combate
 
         Console.WriteLine($"{atacante.Datos.Nombre} ataca a {defensor.Datos.Nombre}!");
         Thread.Sleep(500); // Simula una pausa para el ataque
+
         defensor.Datos.PuntosDeVida -= (int)poder;
         defensor.Datos.PuntosDeVida = Math.Max(0, defensor.Datos.PuntosDeVida); // Evitar vida negativa
         Console.WriteLine($"{defensor.Datos.Nombre} tiene ahora {defensor.Datos.PuntosDeVida} puntos de vida");

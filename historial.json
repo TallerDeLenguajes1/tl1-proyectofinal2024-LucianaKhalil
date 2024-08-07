@@ -4,27 +4,13 @@
       "Id": 0,
       "nombre": "Hoid",
       "clase": "Fighter",
-      "puntosDeVida": 0,
+      "puntosDeVida": 21,
       "raza": "Human"
     },
     "caracteristicas": {
-      "fuerza": 25,
-      "destreza": 18,
+      "fuerza": 13,
+      "destreza": 24,
       "velocidad": 12
-    }
-  },
-  {
-    "datos": {
-      "Id": 0,
-      "nombre": "Jasnah",
-      "clase": "Paladin",
-      "puntosDeVida": 35,
-      "raza": "Dwarf"
-    },
-    "caracteristicas": {
-      "fuerza": 11,
-      "destreza": 17,
-      "velocidad": 14
     }
   }
 ]

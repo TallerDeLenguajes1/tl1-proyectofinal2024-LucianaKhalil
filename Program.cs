@@ -175,7 +175,12 @@ namespace ArchivoDeLasTormentas
                     }
                 }
             }
-
+             if (ganadorUsuario)
+            {
+                Console.ForegroundColor = TextoExitoColor;
+                Console.WriteLine("¡Felicidades! ¡Has derrotado a todos los enemigos y ganado el juego!");
+                Console.ResetColor();
+            }
             manejadorDePersonajes.GuardarPersonajes(ganadores, nombreArchivoHistorial);
             Console.ForegroundColor = TextoExitoColor;
             Console.WriteLine("Ganadores guardados en historial.json");
