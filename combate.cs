@@ -5,8 +5,8 @@ using Proyecto;
 public static class Combate
 {
     private const int MAX_VIDA = 100; // Inicializo en 100
-    private const double BONIFICACION_USUARIO = 1.1; // 10% para el usuario
-    private const double REDUCCION_DAÑO_ENEMIGO = 0.9; // reducción 10% daño al usuario
+    private const double BONIFICACION_USUARIO = 1.1; // 10% ventaja para el usuario
+    private const double REDUCCION_DAÑO_ENEMIGO = 0.9; // reducción 10% daño al usuario, para darle ventaja
     private const int MIN_CURACION = 10; // Cantidad mínima de puntos de vida curados
     private const int MAX_CURACION = 30; // Cantidad máxima de puntos de vida curados
 
@@ -79,7 +79,7 @@ public static class Combate
             {
                 if (random.Next(0, 2) == 0) // 50% de probabilidad de que sea el usuario quien se cure
                 {
-                    int curacionUsuario = random.Next(MIN_CURACION, MAX_CURACION + 1);
+                    int curacionUsuario = random.Next(MIN_CURACION, MAX_CURACION + 1);//la curacion es entre 10 y 30 puntos
                     personajeUsuario.Datos.PuntosDeVida += curacionUsuario;
                     personajeUsuario.Datos.PuntosDeVida = Math.Min(MAX_VIDA, personajeUsuario.Datos.PuntosDeVida);
                     Console.WriteLine($"{personajeUsuario.Datos.Nombre} ha tomado una poción y se ha curado {curacionUsuario} puntos de vida!");
