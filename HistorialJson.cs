@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Text.Json;
 using System.IO;
+using System.Text.Json;
 
 namespace Proyecto
 {
@@ -11,15 +11,28 @@ namespace Proyecto
         {
             try
             {
-                var historial = new
+                List<EntradaHistorial> historial;
+                if (File.Exists(nombreArchivo))
                 {
-                    Ganador = new
+                    string jsonExistente = File.ReadAllText(nombreArchivo);
+                    historial = JsonSerializer.Deserialize<List<EntradaHistorial>>(jsonExistente) ?? new List<EntradaHistorial>();
+                }
+                else
+                {
+                    historial = new List<EntradaHistorial>();
+                }
+
+                var ganadorConFecha = new EntradaHistorial
+                {
+                    Ganador = new Ganador
                     {
                         Datos = ganador.Datos,
                         Caracteristicas = ganador.Caracteristicas
                     },
-                    FechaYHora = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") // Fecha y hora actual
+                    FechaYHora = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
                 };
+
+                historial.Add(ganadorConFecha);
 
                 var opcionesJson = new JsonSerializerOptions { WriteIndented = true };
                 string json = JsonSerializer.Serialize(historial, opcionesJson);
@@ -31,24 +44,24 @@ namespace Proyecto
             }
         }
 
-        public dynamic LeerGanadores(string nombreArchivo)
+        public List<EntradaHistorial> LeerGanadores(string nombreArchivo)
         {
             try
             {
                 if (!File.Exists(nombreArchivo) || new FileInfo(nombreArchivo).Length == 0)
                 {
                     Console.WriteLine("El archivo no existe o está vacío.");
-                    return null;
+                    return new List<EntradaHistorial>();
                 }
 
                 string json = File.ReadAllText(nombreArchivo);
-                var historial = JsonSerializer.Deserialize<dynamic>(json);
-                return historial;
+                List<EntradaHistorial> historial = JsonSerializer.Deserialize<List<EntradaHistorial>>(json);
+                return historial ?? new List<EntradaHistorial>();
             }
             catch (Exception e)
             {
                 Console.WriteLine($"Error al leer el historial: {e.Message}");
-                return null;
+                return new List<EntradaHistorial>();
             }
         }
     }

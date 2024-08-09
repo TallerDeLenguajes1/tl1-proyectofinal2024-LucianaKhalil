@@ -1,17 +1,19 @@
-{
-  "Ganador": {
-    "Datos": {
-      "Id": 0,
-      "nombre": "Hoid",
-      "clase": "Fighter",
-      "puntosDeVida": 100,
-      "raza": "Human"
-    },
-    "Caracteristicas": {
-      "fuerza": 51,
-      "destreza": 32,
-      "velocidad": 67
-    }
-  },
-  "FechaYHora": "2024-08-07 13:37:10"
-}
+[
+  {
+      "Ganador": {
+          "Datos": {
+              "Id": 0,
+              "nombre": "Hoid",
+              "clase": "Fighter",
+              "puntosDeVida": 100,
+              "raza": "Human"
+          },
+          "Caracteristicas": {
+              "fuerza": 51,
+              "destreza": 32,
+              "velocidad": 67
+          }
+      },
+      "FechaYHora": "2024-08-07 13:37:10"
+  }
+]

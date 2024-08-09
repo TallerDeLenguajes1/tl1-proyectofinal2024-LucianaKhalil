@@ -4,10 +4,11 @@ using Proyecto;
 
 public static class Combate
 {
-    private const int MAX_VIDA = 100; // inicializo en 100
+    private const int MAX_VIDA = 100; // Inicializo en 100
     private const double BONIFICACION_USUARIO = 1.1; // 10% para el usuario
     private const double REDUCCION_DAÑO_ENEMIGO = 0.9; // reducción 10% daño al usuario
-    private const int CURACION_USUARIO = 20; // Cantidad de puntos de vida curados
+    private const int MIN_CURACION = 10; // Cantidad mínima de puntos de vida curados
+    private const int MAX_CURACION = 30; // Cantidad máxima de puntos de vida curados
 
     public static bool FormulaCombate(Personaje personajeUsuario, Personaje enemigo)
     {
@@ -55,6 +56,7 @@ public static class Combate
             if (enemigo.Datos.PuntosDeVida <= 0)
             {
                 Console.WriteLine($"{personajeUsuario.Datos.Nombre} ha derrotado a {enemigo.Datos.Nombre}!");
+
                 // Restaurar las características originales del personaje
                 personajeUsuario.Caracteristicas.Fuerza = fuerzaOriginal;
                 personajeUsuario.Caracteristicas.Destreza = destrezaOriginal;
@@ -68,15 +70,27 @@ public static class Combate
             else if (personajeUsuario.Datos.PuntosDeVida <= 0)
             {
                 Console.WriteLine($"{enemigo.Datos.Nombre} ha derrotado a {personajeUsuario.Datos.Nombre}!");
+
                 return false;
             }
 
-            // Ocasionalmente curar al usuario
+            // Ocasionalmente curar al usuario o al enemigo
             if (random.Next(1, 11) <= 3) // 30% de probabilidad de curación en cada ronda
             {
-                personajeUsuario.Datos.PuntosDeVida += CURACION_USUARIO;
-                personajeUsuario.Datos.PuntosDeVida = Math.Min(MAX_VIDA, personajeUsuario.Datos.PuntosDeVida);
-                Console.WriteLine($"{personajeUsuario.Datos.Nombre} se ha curado {CURACION_USUARIO} puntos de vida!");
+                if (random.Next(0, 2) == 0) // 50% de probabilidad de que sea el usuario quien se cure
+                {
+                    int curacionUsuario = random.Next(MIN_CURACION, MAX_CURACION + 1);
+                    personajeUsuario.Datos.PuntosDeVida += curacionUsuario;
+                    personajeUsuario.Datos.PuntosDeVida = Math.Min(MAX_VIDA, personajeUsuario.Datos.PuntosDeVida);
+                    Console.WriteLine($"{personajeUsuario.Datos.Nombre} ha tomado una poción y se ha curado {curacionUsuario} puntos de vida!");
+                }
+                else // 50% de probabilidad de que sea el enemigo quien se cure
+                {
+                    int curacionEnemigo = random.Next(MIN_CURACION, MAX_CURACION + 1);
+                    enemigo.Datos.PuntosDeVida += curacionEnemigo;
+                    enemigo.Datos.PuntosDeVida = Math.Min(MAX_VIDA, enemigo.Datos.PuntosDeVida);
+                    Console.WriteLine($"{enemigo.Datos.Nombre} ha tomado una poción y se ha curado {curacionEnemigo} puntos de vida!");
+                }
             }
 
             Console.WriteLine("Presiona cualquier tecla para continuar...");

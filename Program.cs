@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Proyecto;
+using Formato;
 
 namespace ArchivoDeLasTormentas
 {
@@ -22,21 +23,18 @@ namespace ArchivoDeLasTormentas
             {
                 Console.ForegroundColor = TituloColor;
                 string titulo = "El Archivo de las tormentas";
-                Console.WriteLine("\n                                       ==================================================");
-                Console.WriteLine($"                                                  {titulo.ToUpper()}      ");
-                Console.WriteLine("                                       ==================================================\n");
-                Console.ResetColor();
+                ConsolaFormato.EscribirCentrado("===================================================", TituloColor);
+                ConsolaFormato.EscribirCentrado(titulo.ToUpper(), TituloColor);
+                ConsolaFormato.EscribirCentrado("===================================================\n", TituloColor);
 
-                await ConsolaFormato.EscribirConEfecto("En el mundo devastado de Roshar, el destino de la humanidad pende de un hilo. La guerra entre los Radiantes, antiguos guerreros imbuidos de poderes sagrados y temidos por su habilidad para manipular las tormentas, ha regresado y las fuerzas de Odium han alcanzado su punto crítico en una serie de batallas decisivas. En esta encrucijada decisiva, tú asumes el papel de un Radiante, dispuesto a luchar por la supervivencia de tu pueblo y el futuro de un mundo devastado por la guerra: un duelo contra el campeón de Odium y sus nueve despojos. La verdadera desolación se acerca.", ConsoleColor.White);
+                await ConsolaFormato.EscribirConEfecto("En el mundo devastado de Roshar, el destino de la humanidad pende de un hilo...", ConsoleColor.White);
                 Console.WriteLine();
 
-                Console.ForegroundColor = TituloColor;
-                Console.WriteLine("====== MENÚ PRINCIPAL ======");
-                Console.ResetColor();
-                Console.WriteLine("1. Jugar");
-                Console.WriteLine("2. Ver Historial de Ganadores");
-                Console.WriteLine("3. Salir");
-                Console.WriteLine("====================");
+                ConsolaFormato.EscribirCentrado("====== MENÚ PRINCIPAL ======", TituloColor);
+                ConsolaFormato.EscribirCentrado("1. Jugar");
+                ConsolaFormato.EscribirCentrado("2. Ver Historial de Ganadores");
+                ConsolaFormato.EscribirCentrado("3. Salir");
+                ConsolaFormato.EscribirCentrado("====================");
 
                 int opcion = ObtenerOpcionMenu();
                 switch (opcion)
@@ -133,7 +131,10 @@ namespace ArchivoDeLasTormentas
 
     bool ganadorUsuario = true;
     Random random = new Random();
-
+    // Guardar las características originales del personaje del usuario
+            int fuerzaOriginal = personajeUsuario.Caracteristicas.Fuerza;
+            int destrezaOriginal = personajeUsuario.Caracteristicas.Destreza;
+            int velocidadOriginal = personajeUsuario.Caracteristicas.Velocidad;
     foreach (var enemigo in enemigos)
     {
         if (!ganadorUsuario)
@@ -170,6 +171,10 @@ namespace ArchivoDeLasTormentas
                 Console.WriteLine($"¡{personajeUsuario.Datos.Nombre} ha perdido la pelea contra {enemigo.Datos.Nombre}!");
                 Console.ResetColor();
             }
+             // Restaurar las características originales del personaje del usuario
+                    personajeUsuario.Caracteristicas.Fuerza = fuerzaOriginal;
+                    personajeUsuario.Caracteristicas.Destreza = destrezaOriginal;
+                    personajeUsuario.Caracteristicas.Velocidad = velocidadOriginal;
         }
     }
 
@@ -261,35 +266,38 @@ namespace ArchivoDeLasTormentas
             await Task.Delay(1000); // Pausa antes del próximo mensaje
         }
 
-        private static void MostrarHistorial()
-        {
-            PersonajesJson manejadorDePersonajes = new PersonajesJson();
+      
+      private static void MostrarHistorial()
+{
+    HistorialJson historialJson = new HistorialJson();
 
-            if (!manejadorDePersonajes.Existe(nombreArchivoHistorial))
-            {
-                Console.WriteLine("No hay historial disponible.");
-                Console.WriteLine("Presiona cualquier tecla para volver al menú principal...");
-                Console.ReadKey();
-                return;
-            }
+    if (!File.Exists(nombreArchivoHistorial))
+    {
+        Console.WriteLine("No hay historial disponible.");
+        Console.WriteLine("Presiona cualquier tecla para volver al menú principal...");
+        Console.ReadKey();
+        return;
+    }
 
-            List<Personaje> ganadores = manejadorDePersonajes.LeerPersonajes(nombreArchivoHistorial);
+    List<EntradaHistorial> ganadores = historialJson.LeerGanadores(nombreArchivoHistorial);
 
-            Console.WriteLine("==== HISTORIAL DE GANADORES ====");
-            foreach (var ganador in ganadores)
-            {
-                Console.WriteLine($"Nombre: {ganador.Datos.Nombre}");
-                Console.WriteLine($"Clase: {ganador.Datos.Clase}");
-                Console.WriteLine($"Raza: {ganador.Datos.Raza}");
-                Console.WriteLine($"Puntos de Vida: {ganador.Datos.PuntosDeVida}");
-                Console.WriteLine("Características:");
-                Console.WriteLine($"  Fuerza: {ganador.Caracteristicas.Fuerza}");
-                Console.WriteLine($"  Destreza: {ganador.Caracteristicas.Destreza}");
-                Console.WriteLine($"  Velocidad: {ganador.Caracteristicas.Velocidad}");
-                Console.WriteLine("******************");
-            }
-            Console.WriteLine("Presiona cualquier tecla para volver al menú principal...");
-            Console.ReadKey();
-        }
+    Console.WriteLine("==== HISTORIAL DE GANADORES ====");
+    foreach (var entrada in ganadores)
+    {
+        var ganador = entrada.Ganador;
+        Console.WriteLine($"Nombre: {ganador.Datos.Nombre}");
+        Console.WriteLine($"Clase: {ganador.Datos.Clase}");
+        Console.WriteLine($"Raza: {ganador.Datos.Raza}");
+        Console.WriteLine($"Puntos de Vida: {ganador.Datos.PuntosDeVida}");
+        Console.WriteLine("Características:");
+        Console.WriteLine($"  Fuerza: {ganador.Caracteristicas.Fuerza}");
+        Console.WriteLine($"  Destreza: {ganador.Caracteristicas.Destreza}");
+        Console.WriteLine($"  Velocidad: {ganador.Caracteristicas.Velocidad}");
+        Console.WriteLine($"Fecha y Hora: {entrada.FechaYHora}");
+        Console.WriteLine("******************");
+    }
+    Console.WriteLine("Presiona cualquier tecla para volver al menú principal...");
+    Console.ReadKey();
+}
     }
 }
