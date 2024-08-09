@@ -1,5 +1,5 @@
 # El archivo de las tormentas
-En el mundo devastado de Roshar, el destino de la humanidad pende de un hilo. La guerra entre los Radiantes, antiguos guerreros imbuidos de poderes sagrados y temidos por su habilidad para manipular las tormentas, han regresado y las fuerzas de Odium ha alcanzado su punto crítico en una serie de batallas decisivas. En esta encrucijada decisiva, tú asumes el papel de un Radiante, dispuesto a luchar por la supervivencia de tu pueblo y el futuro de un mundo devastado por la guerra: un duelo contra el campeón de Odium y sus nueve despojos. La verdadera desolación se acerca.
+En el devastado mundo de Roshar, donde la guerra y las tormentas han moldeado el destino de la humanidad, una batalla decisiva se avecina. Los Radiantes, antiguos guerreros venerados por su capacidad de canalizar el poder de las tormentas, han vuelto a levantarse, enfrentando a las implacables fuerzas de Odium. En este momento crucial, tú encarnas a un Radiante, el último baluarte de esperanza en un mundo desgarrado por la guerra. Tu misión es clara: enfrentarte al campeón de Odium y sus nueve temibles seguidores en un duelo épico. La verdadera desolación está a punto de desatarse. El destino de Roshar está en tus manos.
 
 ## Descripción del Juego
 
