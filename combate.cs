@@ -105,7 +105,7 @@ public static class Combate
         return personajeUsuario.Datos.PuntosDeVida > 0;
     }
 
-    private static void RealizarAtaque(Personaje atacante, Personaje defensor, bool esEnemigo = false)
+    private static void RealizarAtaque(Personaje atacante, Personaje defensor, bool esEnemigo = false)//calcula el poder del ataque en función de las características del atacante, la tirada de dado D20, y un multiplicador que depende de si el atacante es el usuario o el enemigo.
     {
         Random random = new Random();
         int resultadoD20 = random.Next(1, 21);

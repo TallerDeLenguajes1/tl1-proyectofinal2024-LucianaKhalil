@@ -27,7 +27,7 @@ namespace ArchivoDeLasTormentas
                 ConsolaFormato.EscribirCentrado(titulo.ToUpper(), TituloColor);
                 ConsolaFormato.EscribirCentrado("===================================================\n", TituloColor);
 
-                await ConsolaFormato.EscribirConEfecto("En el mundo devastado de Roshar, el destino de la humanidad pende de un hilo...", ConsoleColor.White);
+                await ConsolaFormato.EscribirConEfecto("En el devastado mundo de Roshar, donde la guerra y las tormentas han moldeado el destino de la humanidad, una batalla decisiva se avecina. Los Radiantes, antiguos guerreros venerados por su capacidad de canalizar el poder de las tormentas, han vuelto a levantarse, enfrentando a las implacables fuerzas de Odium. En este momento crucial, tú encarnas a un Radiante, el último baluarte de esperanza en un mundo desgarrado por la guerra. Tu misión es clara: enfrentarte al campeón de Odium y sus nueve temibles seguidores en un duelo épico. La verdadera desolación está a punto de desatarse. El destino de Roshar está en tus manos.", ConsoleColor.White);
                 Console.WriteLine();
 
                 ConsolaFormato.EscribirCentrado("====== MENÚ PRINCIPAL ======", TituloColor);
@@ -70,12 +70,12 @@ namespace ArchivoDeLasTormentas
        private static async Task Jugar()
 {
     FabricaDePersonajes fabrica = new FabricaDePersonajes();
-    PersonajesJson manejadorDePersonajes = new PersonajesJson();
+    PersonajesJson manejadorDePersonajes = new PersonajesJson();//maneja la lectura y escritura de los personajes en un archivo JSON (personaje.json).
     List<Personaje> personajes = new List<Personaje>();
 
     if (manejadorDePersonajes.Existe(nombreArchivoPersonajes))
     {
-        personajes = manejadorDePersonajes.LeerPersonajes(nombreArchivoPersonajes);
+        personajes = manejadorDePersonajes.LeerPersonajes(nombreArchivoPersonajes);//si el personaje.json existe
     }
     else
     {
@@ -156,7 +156,7 @@ namespace ArchivoDeLasTormentas
             Console.WriteLine("===========================");
             Console.ResetColor();
 
-            await MostrarTiradaDeDados(personajeUsuario, enemigo, random);
+            await MostrarTiradaDeDados(personajeUsuario, enemigo, random);//método asíncrono que muestra la animación o resultado de una tirada de dados para ambos personajes 
 
             ganadorUsuario = Combate.FormulaCombate(personajeUsuario, enemigo);
             if (ganadorUsuario)
@@ -255,7 +255,7 @@ namespace ArchivoDeLasTormentas
             await Task.Delay(1000);
         }
 
-        private static async Task MostrarResultadoDado(string mensaje)
+        private static async Task MostrarResultadoDado(string mensaje)//Crea un efecto visual en la consola donde el mensaje parece ser escrito letra por letra, en lugar de aparecer todo de una vez.
         {
             foreach (char c in mensaje)
             {
@@ -279,7 +279,7 @@ namespace ArchivoDeLasTormentas
         return;
     }
 
-    List<EntradaHistorial> ganadores = historialJson.LeerGanadores(nombreArchivoHistorial);
+    List<EntradaHistorial> ganadores = historialJson.LeerGanadores(nombreArchivoHistorial);//historial.json
 
     Console.WriteLine("==== HISTORIAL DE GANADORES ====");
     foreach (var entrada in ganadores)

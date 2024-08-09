@@ -1,5 +1,5 @@
 # El archivo de las tormentas
-En el mundo devastado de Roshar, el destino de la humanidad pende de un hilo. La guerra entre los Radiantes, antiguos guerreros imbuidos de poderes sagrados y temidos por su habilidad para manipular las tormentas, han regresado y las fuerzas de Odium ha alcanzado su punto crítico en una serie de batallas decisivas. En esta encrucijada decisiva, tú asumes el papel de un Radiante, dispuesto a luchar por la supervivencia de tu pueblo y el futuro de un mundo devastado por la guerra: un duelo contra el campeón de Odium y sus nueve despojos. La verdadera desolación se acerca.
+En el devastado mundo de Roshar, donde la guerra y las tormentas han moldeado el destino de la humanidad, una batalla decisiva se avecina. Los Radiantes, antiguos guerreros venerados por su capacidad de canalizar el poder de las tormentas, han vuelto a levantarse, enfrentando a las implacables fuerzas de Odium. En este momento crucial, tú encarnas a un Radiante, el último baluarte de esperanza en un mundo desgarrado por la guerra. Tu misión es clara: enfrentarte al campeón de Odium y sus nueve temibles seguidores en un duelo épico. La verdadera desolación está a punto de desatarse. El destino de Roshar está en tus manos.
 
 ## Descripción del Juego
 
@@ -22,11 +22,38 @@ La fórmula de combate diseñada utiliza una combinación de tiradas de dados y 
 - `iniciativaUsuario` y `iniciativaEnemigo` se generan aleatoriamente entre 1 y 20.
 - El personaje con la tirada más alta comienza el combate.
 
-### Cálculo del Poder
+### Sistema de Combate
 
-- El poder de ataque de cada personaje se calcula sumando sus características (Fuerza, Destreza, Velocidad) y multiplicándolo por un factor que depende del resultado de una tirada de dado D20.
-- La fórmula para calcular el poder de ataque es:
+El sistema de combate en "El Archivo de las Tormentas" está diseñado para enfrentar al personaje del jugador contra un enemigo en un duelo dinámico. A continuación, se detallan los aspectos clave del sistema de combate:
+
+#### Mecánica de Combate
+
+1. **Iniciativa:**
+   - Cada combate comienza con una tirada de iniciativa usando un dado de 20 caras (D20). La iniciativa del jugador se incrementa en un 10% para reflejar la bonificación del usuario, mientras que la iniciativa del enemigo se calcula normalmente.
+   - El personaje con mayor iniciativa comienza el combate.
+
+2. **Turnos de Combate:**
+   - Los personajes se alternan en sus turnos para atacar. Si el jugador empieza, atacará primero; de lo contrario, el enemigo atacará primero.
+   - Cada ataque se basa en una tirada de D20 y se aplica un multiplicador al daño según si el atacante es el jugador o el enemigo. El daño recibido se reduce en un 10% para el jugador.
+
+3. **Ataques y Daño:**
+   - Los ataques se calculan sumando la Fuerza, Destreza y Velocidad del atacante, ajustados por el resultado de la tirada del dado.
+   - El daño se aplica al personaje defensor, reduciendo sus puntos de vida.
+
+4. **Curación:**
+   - Existe una probabilidad del 30% en cada ronda de combate de que uno de los combatientes reciba una curación aleatoria. La curación puede beneficiar tanto al jugador como al enemigo, con una cantidad que varía entre 10 y 30 puntos de vida.
+
+5. **Estado del Combate:**
+   - Se muestra el estado actual de ambos combatientes, incluyendo sus puntos de vida en una barra gráfica visual.
+
+6. **Resultado del Combate:**
+   - El combate continúa hasta que uno de los combatientes se queda sin puntos de vida. El combatiente con puntos de vida restantes es el ganador.
+   - Si el jugador gana, se cura completamente y se restaura su fuerza original. Si el jugador pierde, el combate termina con la derrota del jugador.
+
+### Ejemplo de Código
 
 ```csharp
-double poderUsuario = (personajeUsuario.Caracteristicas.Fuerza + personajeUsuario.Caracteristicas.Destreza + personajeUsuario.Caracteristicas.Velocidad) * (1 + (resultadoD20Usuario / 100.0));
-double poderEnemigo = (enemigo.Caracteristicas.Fuerza + enemigo.Caracteristicas.Destreza + enemigo.Caracteristicas.Velocidad) * (1 + (resultadoD20Enemigo / 100.0));
+public static bool FormulaCombate(Personaje personajeUsuario, Personaje enemigo)
+{
+    // Código de combate...
+}

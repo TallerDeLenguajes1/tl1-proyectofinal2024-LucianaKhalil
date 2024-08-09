@@ -5,7 +5,7 @@ using System.Text.Json;
 
 namespace Proyecto
 {
-    public class HistorialJson
+    public class HistorialJson//guardar y leer el historial de ganadores en un archivo JSON
     {
         public void GuardarGanador(Personaje ganador, string nombreArchivo)
         {
