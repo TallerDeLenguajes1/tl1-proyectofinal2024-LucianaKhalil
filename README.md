@@ -4,9 +4,13 @@ En el devastado mundo de Roshar, donde la guerra y las tormentas han moldeado el
 ## Descripción del Juego
 
 En este juego de rol basado en combates por turnos, tu objetivo es luchar contra una serie de enemigos utilizando tiradas de dados y características únicas de cada personaje. El juego te permite elegir un personaje Radiante y luchar contra diez enemigos en una secuencia de batallas, donde la estrategia y la suerte juegan roles cruciales.
+## API Utilizada
 
+Para la generación de personajes, se utiliza la API pública de D&D 5e:
+
+- **URL**: [https://www.dnd5eapi.co/](https://www.dnd5eapi.co/)
+- **Descripción**: Esta API proporciona acceso a información sobre las clases y razas del sistema de Dungeons & Dragons 5ª edición.
 ## Características del Juego
-
 
 * Generación de personajes: Personajes aleatorios con diferentes clases, razas y características.
 * Combates por turnos: Tiradas de dados que afectan el resultado de las peleas.
