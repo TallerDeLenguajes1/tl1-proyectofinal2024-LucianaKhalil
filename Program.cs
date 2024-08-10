@@ -19,13 +19,14 @@ namespace ArchivoDeLasTormentas
 
         public static async Task Main(string[] args)
         {
+            
             while (true)
             {
                 Console.ForegroundColor = TituloColor;
                 string titulo = "El Archivo de las tormentas";
                 ConsolaFormato.EscribirCentrado("===================================================", TituloColor);
                 ConsolaFormato.EscribirCentrado(titulo.ToUpper(), TituloColor);
-                ConsolaFormato.EscribirCentrado("===================================================\n", TituloColor);
+                ConsolaFormato.EscribirCentrado("==================================================\n", TituloColor);
 
                 await ConsolaFormato.EscribirConEfecto("En el devastado mundo de Roshar, donde la guerra y las tormentas han moldeado el destino de la humanidad, una batalla decisiva se avecina. Los Radiantes, antiguos guerreros venerados por su capacidad de canalizar el poder de las tormentas, han vuelto a levantarse, enfrentando a las implacables fuerzas de Odium. En este momento crucial, tú encarnas a un Radiante, el último baluarte de esperanza en un mundo desgarrado por la guerra. Tu misión es clara: enfrentarte al campeón de Odium y sus nueve temibles seguidores en un duelo épico. La verdadera desolación está a punto de desatarse. El destino de Roshar está en tus manos.", ConsoleColor.White);
                 Console.WriteLine();

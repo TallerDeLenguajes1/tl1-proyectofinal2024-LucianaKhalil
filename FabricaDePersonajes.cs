@@ -58,7 +58,7 @@ namespace Proyecto
 
                 //obtener los bonos
                 var bonosRaza=bonos.ObtenerBonosPorRaza(razaAleatoria.name);
-                var bonosClase=bonos.ObtenerBonosPorClase(claseAleatoria.name);
+                var bonosClase=bonos.ObtenerBonosPorClase(claseAleatoria.name);//caracteristicas raza clase
                 // Crear un personaje aleatorio
                 Personaje personajeJson = new Personaje()
                 {

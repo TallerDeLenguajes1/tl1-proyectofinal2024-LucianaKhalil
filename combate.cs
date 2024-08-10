@@ -5,8 +5,8 @@ using Proyecto;
 public static class Combate
 {
     private const int MAX_VIDA = 100; // Inicializo en 100
-    private const double BONIFICACION_USUARIO = 1.1; // 10% ventaja para el usuario
-    private const double REDUCCION_DAÑO_ENEMIGO = 0.9; // reducción 10% daño al usuario, para darle ventaja
+    private const double BONIFICACION_USUARIO = 1.3; // 10% ventaja para el usuario  1.1
+    private const double REDUCCION_DAÑO_ENEMIGO = 0.8; // reducción 10% daño al usuario, para darle ventaja 0.9
     private const int MIN_CURACION = 10; // Cantidad mínima de puntos de vida curados
     private const int MAX_CURACION = 30; // Cantidad máxima de puntos de vida curados
 

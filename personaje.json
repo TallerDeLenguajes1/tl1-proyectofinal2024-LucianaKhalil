@@ -2,13 +2,13 @@
   {
     "datos": {
       "Id": 0,
-      "nombre": "Hoid",
-      "clase": "Fighter",
+      "nombre": "Taravangian",
+      "clase": "Paladin",
       "puntosDeVida": 100,
-      "raza": "Human"
+      "raza": "Gnome"
     },
     "caracteristicas": {
-      "fuerza": 13,
+      "fuerza": 9,
       "destreza": 11,
       "velocidad": 12
     }
@@ -16,63 +16,7 @@
   {
     "datos": {
       "Id": 0,
-      "nombre": "Shallan",
-      "clase": "Warlock",
-      "puntosDeVida": 100,
-      "raza": "Elf"
-    },
-    "caracteristicas": {
-      "fuerza": 8,
-      "destreza": 10,
-      "velocidad": 11
-    }
-  },
-  {
-    "datos": {
-      "Id": 0,
-      "nombre": "Jasnah",
-      "clase": "Paladin",
-      "puntosDeVida": 100,
-      "raza": "Dwarf"
-    },
-    "caracteristicas": {
-      "fuerza": 11,
-      "destreza": 10,
-      "velocidad": 14
-    }
-  },
-  {
-    "datos": {
-      "Id": 0,
-      "nombre": "Szeth",
-      "clase": "Rogue",
-      "puntosDeVida": 100,
-      "raza": "Halfling"
-    },
-    "caracteristicas": {
-      "fuerza": 5,
-      "destreza": 16,
-      "velocidad": 8
-    }
-  },
-  {
-    "datos": {
-      "Id": 0,
-      "nombre": "Renarin",
-      "clase": "Wizard",
-      "puntosDeVida": 100,
-      "raza": "Human"
-    },
-    "caracteristicas": {
-      "fuerza": 7,
-      "destreza": 11,
-      "velocidad": 9
-    }
-  },
-  {
-    "datos": {
-      "Id": 0,
-      "nombre": "Adolin",
+      "nombre": "Elhokar",
       "clase": "Cleric",
       "puntosDeVida": 100,
       "raza": "Dwarf"
@@ -87,12 +31,82 @@
     "datos": {
       "Id": 0,
       "nombre": "Dalinar",
-      "clase": "Monk",
+      "clase": "Ranger",
       "puntosDeVida": 100,
-      "raza": "Human"
+      "raza": "Tiefling"
     },
     "caracteristicas": {
-      "fuerza": 10,
+      "fuerza": 7,
+      "destreza": 13,
+      "velocidad": 12
+    }
+  },
+  {
+    "datos": {
+      "Id": 0,
+      "nombre": "Hoid",
+      "clase": "Druid",
+      "puntosDeVida": 100,
+      "raza": "Elf"
+    },
+    "caracteristicas": {
+      "fuerza": 5,
+      "destreza": 11,
+      "velocidad": 8
+    }
+  },
+  {
+    "datos": {
+      "Id": 0,
+      "nombre": "Adolin",
+      "clase": "Sorcerer",
+      "puntosDeVida": 100,
+      "raza": "Halfling"
+    },
+    "caracteristicas": {
+      "fuerza": 4,
+      "destreza": 11,
+      "velocidad": 6
+    }
+  },
+  {
+    "datos": {
+      "Id": 0,
+      "nombre": "Kaladin",
+      "clase": "Monk",
+      "puntosDeVida": 100,
+      "raza": "Half-Orc"
+    },
+    "caracteristicas": {
+      "fuerza": 11,
+      "destreza": 12,
+      "velocidad": 13
+    }
+  },
+  {
+    "datos": {
+      "Id": 0,
+      "nombre": "Jasnah",
+      "clase": "Barbarian",
+      "puntosDeVida": 100,
+      "raza": "Tiefling"
+    },
+    "caracteristicas": {
+      "fuerza": 12,
+      "destreza": 10,
+      "velocidad": 13
+    }
+  },
+  {
+    "datos": {
+      "Id": 0,
+      "nombre": "Renarin",
+      "clase": "Barbarian",
+      "puntosDeVida": 100,
+      "raza": "Halfling"
+    },
+    "caracteristicas": {
+      "fuerza": 11,
       "destreza": 13,
       "velocidad": 11
     }
@@ -100,21 +114,21 @@
   {
     "datos": {
       "Id": 0,
-      "nombre": "Lift",
-      "clase": "Warlock",
+      "nombre": "Shallan",
+      "clase": "Bard",
       "puntosDeVida": 100,
-      "raza": "Half-Orc"
+      "raza": "Dragonborn"
     },
     "caracteristicas": {
       "fuerza": 11,
-      "destreza": 7,
-      "velocidad": 13
+      "destreza": 17,
+      "velocidad": 16
     }
   },
   {
     "datos": {
       "Id": 0,
-      "nombre": "Taravangian",
+      "nombre": "Szeth",
       "clase": "Bard",
       "puntosDeVida": 100,
       "raza": "Halfling"
@@ -128,29 +142,15 @@
   {
     "datos": {
       "Id": 0,
-      "nombre": "Elhokar",
-      "clase": "Sorcerer",
-      "puntosDeVida": 100,
-      "raza": "Elf"
-    },
-    "caracteristicas": {
-      "fuerza": 5,
-      "destreza": 11,
-      "velocidad": 8
-    }
-  },
-  {
-    "datos": {
-      "Id": 0,
-      "nombre": "Kaladin",
-      "clase": "Barbarian",
+      "nombre": "Lift",
+      "clase": "Bard",
       "puntosDeVida": 100,
       "raza": "Gnome"
     },
     "caracteristicas": {
-      "fuerza": 11,
-      "destreza": 12,
-      "velocidad": 12
+      "fuerza": 6,
+      "destreza": 15,
+      "velocidad": 11
     }
   }
 ]

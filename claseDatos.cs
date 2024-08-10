@@ -18,10 +18,11 @@ namespace Proyecto
         [JsonPropertyName("clase")]
         public string Clase { get; set; }
 
+         [JsonPropertyName("raza")]
+        public string Raza { get; set; }
+
         [JsonPropertyName("puntosDeVida")]
         public int PuntosDeVida { get; set; }
 
-        [JsonPropertyName("raza")]
-        public string Raza { get; set; }
     }
 }
